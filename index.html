@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grapevine / La Viña — NETA 65</title>
+  <meta name="description" content="NETA 65 Grapevine and La Viña Committee — Northeast Texas Area of Alcoholics Anonymous">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/images/logo-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="assets/images/logo-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/images/logo-180x180.png">
+  <meta name="theme-color" content="#025a94">
+  <meta property="og:title" content="Grapevine / La Viña — NETA 65">
+  <meta property="og:description" content="Northeast Texas Area 65 Grapevine and La Viña Committee — resources for GVRs, RLVs, districts, and groups.">
+  <meta property="og:image" content="assets/images/logo-192x192.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+          colors: {
+            brand: { 50:'#e8f4fd',100:'#c7e3f8',400:'#3b9ae8',500:'#1E73BE',600:'#0170B9',700:'#025a94' },
+          },
+          keyframes: {
+            pulse2: { '0%,100%':{opacity:1},'50%':{opacity:.6} },
+          },
+          animation: {
+            pulse2: 'pulse2 2s ease infinite',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ── Global responsive baseline ─────────────────────────────────
+       html: stop iOS Safari from auto-zooming text on rotate, give a
+             fixed scroll-padding so #anchor jumps clear the fixed header
+       body: hard-stop horizontal overflow (a single overflowing child
+             would otherwise create an unwanted page-wide scrollbar) */
+    html{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:80px}
+    body{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;overflow-x:hidden;text-rendering:optimizeLegibility}
+    /* Long URLs / addresses must wrap inside narrow containers, never
+       force horizontal scroll. Applied to text-content elements only. */
+    p, li, td{overflow-wrap:break-word;word-wrap:break-word}
+    /* Respect "reduce motion" — disables animations & transitions for users who
+       opt out (vestibular disorders, etc.) but keeps the layout intact. */
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    }
+    /* Visible focus ring for keyboard navigation (does not show on mouse clicks).
+       Modern browsers automatically follow each element's own border-radius,
+       so we deliberately don't set border-radius here — that would override
+       circular/pill-shaped buttons. */
+    :focus-visible{outline:2px solid #0170B9;outline-offset:2px}
+    /* iOS notched-device safe-area: keep the floating back-to-top button and
+       footer above the home indicator */
+    #btt{bottom:max(1.25rem,env(safe-area-inset-bottom));right:max(1.25rem,env(safe-area-inset-right))}
+    footer{padding-bottom:max(1.25rem,env(safe-area-inset-bottom))}
+    .sidebar-panel{padding-bottom:env(safe-area-inset-bottom)}
+    /* Gallery dot hit-area expander — visible dot stays small but the
+       click region is 24×24, with a small inner indicator. Colors match
+       the original slate-300 / brand-600 palette (dots sit on the light
+       page background, BELOW the dark gallery container). */
+    .gal-dot-wrap{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;padding:0;background:transparent;border:none;cursor:pointer}
+    .gal-dot-wrap .gal-dot{width:8px;height:8px;border-radius:9999px;background:#cbd5e1;transition:all .25s}
+    .gal-dot-wrap:hover .gal-dot{background:#94a3b8}
+    .gal-dot-wrap.active .gal-dot{width:24px;background:#0170B9}
+    /* Photo grid thumbnail */
+    .photo-thumb{position:relative;overflow:hidden;border-radius:12px;cursor:pointer;aspect-ratio:1;background:#1e293b}
+    .photo-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.4,0,.2,1),filter .4s}
+    .photo-thumb:hover img{transform:scale(1.08);filter:brightness(1.1)}
+    .photo-thumb .photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:10px 12px}
+    .photo-thumb:hover .photo-overlay{opacity:1}
+    .photo-thumb .photo-overlay span{color:#fff;font-size:.72rem;font-weight:500;line-height:1.3}
+    .photo-thumb .photo-zoom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);opacity:0;transition:all .3s;color:#fff;font-size:1.5rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+    .photo-thumb:hover .photo-zoom{opacity:.85;transform:translate(-50%,-50%) scale(1)}
+    /* Lightbox */
+    .lightbox-overlay{position:fixed;inset:0;z-index:1090;background:rgba(0,0,0,.92);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+    .lightbox-overlay.open{opacity:1;visibility:visible}
+    .lightbox-img{max-width:92vw;max-height:85vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);object-fit:contain;transition:opacity .25s;-webkit-user-select:none;user-select:none}
+    .lightbox-cap{position:absolute;bottom:env(safe-area-inset-bottom,12px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;padding:8px 20px;border-radius:9999px;font-size:.8rem;font-weight:500;max-width:90vw;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.25rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+    .lightbox-nav:hover{background:rgba(255,255,255,.25)}
+    .lightbox-nav.lb-prev{left:max(12px,env(safe-area-inset-left))}
+    .lightbox-nav.lb-next{right:max(12px,env(safe-area-inset-right))}
+    .lightbox-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+    .lightbox-close:hover{background:rgba(255,255,255,.25)}
+    .lightbox-counter{position:absolute;top:max(12px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left));background:rgba(0,0,0,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;padding:6px 14px;border-radius:9999px;font-size:.75rem;font-weight:600}
+    /* Photo category badge */
+    .photo-cat-badge{position:absolute;top:8px;left:8px;padding:2px 8px;border-radius:6px;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;z-index:1}
+    .page{display:none}.page.active{display:block;animation:pageIn .4s ease}
+    @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .sidebar-overlay{opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+    .sidebar-overlay.open{opacity:1;visibility:visible}
+    .sidebar-panel{transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+    .sidebar-overlay.open .sidebar-panel{transform:translateX(0)}
+    .gal-track{transition:transform .5s cubic-bezier(.4,0,.2,1)}
+    .tl-line{background:linear-gradient(180deg,#0170B9,#7c3aed,#d97706)}
+    .tl-row{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+    .tl-row.visible{opacity:1;transform:translateY(0)}
+    .tl-row.hidden,.tl-decade.hidden{display:none}
+    .tpanel{display:none}.tpanel.active{display:block;animation:pageIn .3s ease}
+    .cmodal-overlay{opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+    .cmodal-overlay.open{opacity:1;visibility:visible}
+    .cmodal-box{transform:scale(.95) translateY(10px);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+    .cmodal-overlay.open .cmodal-box{transform:scale(1) translateY(0)}
+    @keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}
+    #btt{opacity:0;visibility:hidden;transform:translateY(10px);transition:all .25s}
+    #btt.visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .glass{background:rgba(255,255,255,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+    .hdr-transparent{background:transparent;border-color:transparent}
+    .hdr-transparent a,.hdr-transparent button{color:rgba(255,255,255,.85)!important}
+    .hdr-transparent a:hover,.hdr-transparent button:hover{color:#fff!important}
+    .hdr-transparent .hdr-brand-title{color:#fff!important}
+    .hdr-transparent .hdr-brand-sub{color:rgba(255,255,255,.6)!important}
+    .hdr-transparent .hdr-menu-btn{border-color:rgba(255,255,255,.25)!important}
+    .hdr-transparent .hdr-menu-btn:hover{background:rgba(255,255,255,.1)!important}    .hdr-solid{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:rgba(226,232,240,.8)}
+    .hero-mesh::before{content:'';position:absolute;top:-40%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);border-radius:50%}
+    .hero-mesh::after{display:none}
+    .hero-mesh{position:relative;overflow:hidden}
+    #grapevineCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+    .card-lift{transition:all .25s cubic-bezier(.4,0,.2,1)}
+    .card-lift:hover{transform:translateY(-4px);box-shadow:0 12px 24px -6px rgba(0,0,0,.1)}
+    .dash-card-icon{transition:transform .25s}.dash-card:hover .dash-card-icon{transform:scale(1.15) rotate(-3deg)}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#f1f5f9}::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:3px}
+    .sidebar-nav-item.active{color:#0170B9!important;background:#e8f4fd!important;font-weight:600!important}
+    .stagger>*{animation:slideUp .5s ease both}
+    .stagger>*:nth-child(1){animation-delay:0s}.stagger>*:nth-child(2){animation-delay:.06s}.stagger>*:nth-child(3){animation-delay:.12s}
+    .stagger>*:nth-child(4){animation-delay:.18s}.stagger>*:nth-child(5){animation-delay:.24s}.stagger>*:nth-child(6){animation-delay:.3s}
+    .stagger>*:nth-child(7){animation-delay:.36s}.stagger>*:nth-child(8){animation-delay:.42s}.stagger>*:nth-child(9){animation-delay:.48s}.stagger>*:nth-child(10){animation-delay:.54s}
+    @media(max-width:767px){.tl-line-pos{left:20px!important}.tl-row{flex-direction:row!important}.tl-row .tl-left{display:none!important}.tl-row .tl-center{width:40px!important}.tl-row .tl-right{width:100%!important;text-align:left!important;opacity:1!important;pointer-events:auto!important}.tl-node-sz{width:32px!important;height:32px!important;font-size:.8rem!important;border-width:2px!important}.tl-decade-ml{text-align:left!important;padding-left:52px!important}}
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 min-h-screen flex flex-col">
+
+  <!-- Skip to content — accessibility -->
+  <a href="#pageContainer" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-brand-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold">Skip to content</a>
+
+  <!-- HEADER — transparent on home hero, solid on scroll/other pages -->
+  <header class="fixed top-0 left-0 right-0 z-[1000] border-b transition-all duration-300 hdr-transparent" id="hdr">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div class="flex items-center justify-between py-3 gap-2 sm:gap-4">
+        <a class="flex items-center gap-2 sm:gap-2.5 no-underline min-w-0 group" href="#home" data-nav="home">
+          <img src="assets/images/cropped-logo-120x56.png" alt="NETA 65 Logo" class="h-9 rounded shrink-0 transition-transform group-hover:scale-105">
+          <div class="min-w-0">
+            <div class="hdr-brand-title text-[.85rem] sm:text-[.9rem] font-bold text-slate-900 leading-tight transition-colors truncate">Grapevine / La Viña</div>
+            <div class="hdr-brand-sub text-[.6rem] text-slate-500 font-medium tracking-wider uppercase transition-colors hidden min-[400px]:block truncate">NETA 65 Committee</div>
+          </div>
+        </a>
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <a href="https://neta65.org" target="_blank" rel="noopener" class="hidden sm:flex items-center gap-1 text-slate-500 text-xs transition-colors no-underline"><i class="bi bi-globe2"></i> neta65.org</a>
+          <a href="mailto:grapevine@neta65.org" id="hdrContact" class="hidden sm:flex items-center gap-1 text-slate-500 text-xs transition-colors no-underline"><i class="bi bi-envelope"></i> <span id="hdrContactTxt">Contact</span></a>
+          <button type="button" id="langBtn" class="hdr-menu-btn border border-slate-200 rounded-lg min-w-[40px] h-10 px-2 hover:bg-slate-100 transition-all text-xs font-bold leading-none bg-transparent cursor-pointer flex items-center justify-center" onclick="toggleLang()" aria-label="Switch language" title="Cambiar idioma / Switch language">ES</button>
+          <button type="button" class="hdr-menu-btn border border-slate-200 rounded-lg w-10 h-10 hover:bg-slate-100 transition-all text-xl leading-none bg-transparent cursor-pointer flex items-center justify-center" onclick="toggleSidebar()" aria-label="Open menu"><i class="bi bi-list"></i></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar-overlay fixed inset-0 bg-slate-900/40 z-[1050]" id="sidebarOverlay" onclick="closeSidebar()">
+    <nav class="sidebar-panel fixed top-0 right-0 bottom-0 w-[280px] max-w-[85vw] bg-white shadow-[-4px_0_20px_rgba(0,0,0,.1)] flex flex-col overflow-y-auto" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-4 border-b border-slate-200">
+        <h6 class="m-0 font-bold text-slate-900">Menu</h6>
+        <button class="text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg w-10 h-10 transition-all text-lg leading-none flex items-center justify-center" onclick="closeSidebar()" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="p-3 flex-1"><ul class="list-none m-0 p-0" id="mNav"></ul></div>
+      <div class="p-4 border-t border-slate-200 space-y-2">
+        <a href="https://neta65.org" target="_blank" rel="noopener" class="flex items-center gap-2 text-slate-500 text-sm hover:text-brand-600 transition-colors no-underline"><i class="bi bi-globe2"></i> neta65.org</a>
+        <a href="mailto:grapevine@neta65.org" class="flex items-center gap-2 text-slate-500 text-sm hover:text-brand-600 transition-colors no-underline"><i class="bi bi-envelope"></i> grapevine@neta65.org</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- PAGE CONTAINER -->
+  <div id="pageContainer" class="flex-1">
+    <div id="pg-home" class="page active"></div>
+    <div id="pg-about" class="page"></div>
+    <div id="pg-gvr" class="page"></div>
+    <div id="pg-subscribe" class="page"></div>
+    <div id="pg-contribute" class="page"></div>
+    <div id="pg-meeting" class="page"></div>
+    <div id="pg-events" class="page"></div>
+    <div id="pg-documents" class="page"></div>
+    <div id="pg-photos" class="page"></div>
+    <div id="pg-media" class="page"></div>
+    <div id="pg-resources" class="page"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 pt-10 pb-5 text-sm mt-auto">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
+      <div class="font-bold text-white text-lg">Grapevine / La Viña Committee</div>
+      <p class="mt-1">Northeast Texas Area 65 of Alcoholics Anonymous</p>
+      <p class="mt-1" id="footerSchedule"></p>
+      <div class="flex gap-5 flex-wrap justify-center my-3">
+        <a href="https://neta65.org" target="_blank" rel="noopener" class="text-slate-300 hover:text-white transition-colors no-underline"><i class="bi bi-globe2"></i> neta65.org</a>
+        <a href="https://www.aagrapevine.org" target="_blank" rel="noopener" class="text-slate-300 hover:text-white transition-colors no-underline"><i class="bi bi-journal-richtext"></i> AA Grapevine</a>
+        <a href="https://www.aalavina.org" target="_blank" rel="noopener" class="text-slate-300 hover:text-white transition-colors no-underline"><i class="bi bi-translate"></i> La Viña</a>
+        <a href="mailto:grapevine@neta65.org" class="text-slate-300 hover:text-white transition-colors no-underline"><i class="bi bi-envelope"></i> <span id="ftrContactTxt">Contact</span></a>
+      </div>
+      <div class="border-t border-slate-800 my-4"></div>
+      <p class="text-xs text-slate-500">&copy; <span id="yr"></span> NETA 65 Grapevine / La Viña Committee. Not affiliated with AA World Services.</p>
+    </div>
+  </footer>
+
+  <button type="button" id="btt" class="fixed bottom-5 right-5 bg-brand-600 hover:bg-brand-700 text-white border-none rounded-xl w-11 h-11 text-lg cursor-pointer z-[999] shadow-lg flex items-center justify-center hover:-translate-y-0.5" title="Back to top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Event Modal -->
+  <div class="cmodal-overlay fixed inset-0 bg-slate-900/50 z-[1070] flex items-center justify-center p-4" id="evModal" onclick="closeModal()">
+    <div class="cmodal-box bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+      <div class="bg-gradient-to-r from-brand-700 to-brand-500 text-white px-5 py-4 flex items-center justify-between rounded-t-2xl">
+        <h5 class="m-0 font-bold text-lg" id="evMT"></h5>
+        <button class="text-white/80 hover:text-white hover:bg-white/15 rounded-lg w-10 h-10 transition-all text-lg leading-none flex items-center justify-center shrink-0" onclick="closeModal()" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="p-6" id="evMB"></div>
+      <div class="px-4 sm:px-5 py-3 border-t border-slate-200 flex flex-wrap gap-2 justify-between">
+        <div class="flex gap-2 flex-wrap">
+          <button type="button" id="evMS" class="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] bg-slate-100 hover:bg-brand-50 text-slate-600 hover:text-brand-600 rounded-lg text-sm font-medium transition-colors border-none cursor-pointer"><i class="bi bi-share"></i> <span id="evMSL">Share</span></button>
+          <button type="button" id="evMC" class="inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] bg-slate-100 hover:bg-brand-50 text-slate-600 hover:text-brand-600 rounded-lg text-sm font-medium transition-colors border-none cursor-pointer"><i class="bi bi-calendar-plus"></i> <span id="evMCL">Calendar</span></button>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <a href="#" id="evMF" class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[40px] bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors no-underline" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf"></i> <span id="evMFL">View Flyer</span></a>
+          <button id="evMClose" class="px-4 py-2 min-h-[40px] bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium border border-slate-200 transition-colors" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Viewer Modal -->
+  <div class="cmodal-overlay fixed inset-0 bg-slate-900/60 z-[1080] flex items-center justify-center p-3 sm:p-5" id="pdfModal" onclick="closePdf()">
+    <div class="cmodal-box bg-white rounded-2xl w-full max-w-5xl h-[92vh] shadow-2xl flex flex-col overflow-hidden" onclick="event.stopPropagation()">
+      <div class="bg-gradient-to-r from-brand-700 to-brand-500 text-white px-5 py-3 flex items-center justify-between rounded-t-2xl shrink-0">
+        <h5 class="m-0 font-bold text-sm sm:text-base truncate pr-3" id="pdfMT"></h5>
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="#" id="pdfMO" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/15 hover:bg-white/25 text-white rounded-lg text-xs font-medium transition-colors no-underline border border-white/20"><i class="bi bi-box-arrow-up-right"></i> <span class="hidden sm:inline" id="pdfMOL">Open</span></a>
+          <a href="#" id="pdfMD" download class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/15 hover:bg-white/25 text-white rounded-lg text-xs font-medium transition-colors no-underline border border-white/20"><i class="bi bi-download"></i> <span class="hidden sm:inline" id="pdfMDL">Download</span></a>
+          <button class="text-white/80 hover:text-white hover:bg-white/15 rounded-lg w-10 h-10 transition-all text-lg leading-none border-none bg-transparent cursor-pointer flex items-center justify-center shrink-0" onclick="closePdf()" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+        </div>
+      </div>
+      <div class="flex-1 bg-slate-100 relative" id="pdfMB">
+        <div class="absolute inset-0 flex items-center justify-center text-slate-400" id="pdfLoader"><i class="bi bi-arrow-repeat text-3xl animate-spin"></i><span class="ml-3 text-sm font-medium" id="pdfLoaderTxt">Loading document...</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox-overlay" id="lbOverlay" onclick="closeLb()">
+    <div class="lightbox-counter" id="lbCounter"></div>
+    <button type="button" class="lightbox-close" onclick="closeLb()" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+    <button type="button" class="lightbox-nav lb-prev" onclick="event.stopPropagation();lbNav(-1)" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
+    <img class="lightbox-img" id="lbImg" onclick="event.stopPropagation()" alt="" draggable="false">
+    <button type="button" class="lightbox-nav lb-next" onclick="event.stopPropagation();lbNav(1)" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
+    <div class="lightbox-cap" id="lbCap"></div>
+  </div>
+
+<script>
+/* ================================================================
+   CONFIGURATION — EDIT THESE ARRAYS TO UPDATE THE SITE
+   ================================================================ */
+const BASE_PATH = "";
+
+/* ── Google Drive Links — loaded from data/config.csv ───────────
+   Defaults below are overwritten by CSV values at load time.
+   ────────────────────────────────────────────────────────────── */
+let GOOGLE_DRIVE = { reports:"", notes:"", slides:"", flyers:"", photos:"" };
+const NAV_SECTIONS = [
+  { id:"home",       label:"Home",           label_es:"Inicio",                icon:"bi-house" },
+  { id:"meeting",    label:"Meeting",        label_es:"Reunión",               icon:"bi-camera-video" },
+  { id:"events",     label:"Events",         label_es:"Eventos",               icon:"bi-calendar-event" },
+  { id:"subscribe",  label:"Subscribe",      label_es:"Suscribirse",           icon:"bi-cart" },
+  { id:"contribute", label:"Contribute",     label_es:"Contribuir",            icon:"bi-pencil-square" },
+  { id:"about",      label:"About GV/LV",    label_es:"Acerca de GV/LV",       icon:"bi-info-circle" },
+  { id:"gvr",        label:"GVR Corner",     label_es:"Rincón del GVR / RLV",  icon:"bi-person-badge" },
+  { id:"documents",  label:"Documents",      label_es:"Documentos",            icon:"bi-folder" },
+  { id:"photos",     label:"Event Gallery",  label_es:"Galería de Eventos",    icon:"bi-images" },
+  { id:"media",      label:"Listen & Watch", label_es:"Escuchar y Ver",        icon:"bi-play-circle" },
+  { id:"resources",  label:"Resources",      label_es:"Recursos",              icon:"bi-link-45deg" },
+];
+let ANNOUNCEMENTS = [];
+// GVR special card URLs — defaults overwritten from data/config.csv
+let GVR_REGISTER_URL = "";
+let RLV_REGISTER_URL = "";
+let CARRY_THE_MESSAGE_URL = "";
+let SPOTIFY_SHOW_URL = "";
+let APPLE_PODCAST_URL = "";
+let AMAZON_PODCAST_URL = "";
+let PODCAST_WEB_URL = "";
+let WEEKLY_OPEN_URL = "";
+let YOUTUBE_CHANNEL_URL = "";
+let INSTAGRAM_GV_URL = "";
+let INSTAGRAM_LV_URL = "";
+let INSTAGRAM_GV_HANDLE = "";
+let INSTAGRAM_LV_HANDLE = "";
+let GV_APPS_URL = "";
+let GV_FOLLOW_URL = "";
+let GV_CONTRIBUTE_URL = "";
+let GV_GUIDELINES_URL = "";
+let GIFT_CTA_URL = "";
+// Meeting info & Weekly Open — defaults overwritten from data/config.csv
+let MEETING_INFO = {
+  schedule:"", schedule_es:"", time:"", platform:"Zoom", zoomLink:"",
+  meetingId:"", passcode:"", chair:"", chair_es:"", chairEmail:"",
+  additionalNotes:"", additionalNotes_es:"",
+};
+let WEEKLY_OPEN = { zoomId:"", passcode:"", day:"", time:"" };
+
+/* ── AA Preamble ────────────────────────────────────────────────
+   Reprinted with permission from The AA Grapevine, Inc.
+   The Preamble originated in the June 1947 issue of the Grapevine.
+   Revised by the 2021 General Service Conference.
+   ────────────────────────────────────────────────────────────── */
+const AA_PREAMBLE = {
+  en: "Alcoholics Anonymous is a fellowship of people who share their experience, strength and hope with each other that they may solve their common problem and help others to recover from alcoholism. The only requirement for membership is a desire to stop drinking. There are no dues or fees for AA membership; we are self-supporting through our own contributions. AA is not allied with any sect, denomination, politics, organization or institution; does not wish to engage in any controversy; neither endorses nor opposes any causes. Our primary purpose is to stay sober and help other alcoholics to achieve sobriety.",
+  es: "Alcohólicos Anónimos es una comunidad de personas que comparten su experiencia, fortaleza y esperanza entre sí para resolver su problema común y ayudar a otros a recuperarse del alcoholismo. El único requisito para ser miembro de AA es el deseo de dejar la bebida. Para ser miembro de AA no se pagan honorarios ni cuotas; nos mantenemos con nuestras propias contribuciones. AA no está afiliada a ninguna secta, religión, partido político, organización o institución alguna; no desea intervenir en controversias; no respalda ni se opone a ninguna causa. Nuestro objetivo primordial es mantenernos sobrios y ayudar a otros alcohólicos a alcanzar el estado de sobriedad.",
+  copyright: "Copyright \u00A9 The AA Grapevine, Inc. AA Preamble reprinted with permission. All rights reserved.",
+  copyright_es: "Copyright \u00A9 The AA Grapevine, Inc. Pre\u00E1mbulo de AA reimpreso con permiso. Todos los derechos reservados.",
+};
+
+// Traditions Checklist — defaults overwritten from data/config.csv
+let TRADITIONS_CHECKLIST = {
+  en_url:"", es_url:"", title:"", title_es:"", description:"", description_es:"", copyright:"", copyright_es:"",
+};
+
+// Auto-calculate the Nth weekday of a month (weekday: 0=Sun..6=Sat, n: 1=first, 2=second, 3=third...)
+function getNthWeekday(year,month,weekday,n){const first=new Date(year,month,1);let d=((weekday-first.getDay()+7)%7)+1;d+=(n-1)*7;return new Date(year,month,d)}
+// Get next 3rd Wednesday on or after today
+function getNextThirdWed(){const now=new Date();for(let i=0;i<13;i++){const d=new Date(now.getFullYear(),now.getMonth()+i,1);const tw=getNthWeekday(d.getFullYear(),d.getMonth(),3,3);if(tw>=new Date(now.getFullYear(),now.getMonth(),now.getDate()))return tw}return null}
+// Format Date to YYYY-MM-DD
+function toISO(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+
+// Auto-computed next meeting date
+const _nextMtg=getNextThirdWed();
+MEETING_INFO.nextMeetingDate=_nextMtg?toISO(_nextMtg):"";
+
+// Auto-generate upcoming monthly committee meetings (next 6 months)
+function generateMonthlyMeetings(){const meetings=[];const now=new Date();for(let i=0;i<6;i++){const d=new Date(now.getFullYear(),now.getMonth()+i,1);const tw=getNthWeekday(d.getFullYear(),d.getMonth(),3,3);meetings.push({date:toISO(tw),title:"Monthly Committee Meeting",title_es:"Reunión Mensual del Comité",location:"Zoom",description:"Regular monthly Grapevine/La Viña committee meeting.",description_es:"Reunión mensual regular del comité de Grapevine/La Viña.",flyerFile:"",auto:true})}return meetings}
+
+// SPECIAL EVENTS — loaded from data/events.csv (supports local file paths or Google Drive links)
+let SPECIAL_EVENTS = [];
+
+// Merge auto-generated monthly meetings with special events (dedup by date+title) — runs after CSV load
+let EVENTS = [];
+function buildEvents(){const all=[...generateMonthlyMeetings(),...SPECIAL_EVENTS];const seen=new Set();EVENTS=all.filter(e=>{const k=e.date+"|"+e.title;if(seen.has(k))return false;seen.add(k);return true})}
+let REPORTS = [];
+let MEETING_NOTES = [];
+let MEETING_SLIDES = [];
+let BOOTH_PHOTOS = [];
+// cat: "sites" | "digital" | "involve" | "gvr" | "listen" | "aa"
+let RESOURCES = [];
+let EDITORIAL_CALENDAR = [];
+let TIMELINE = [];
+let APPLE_SHOW_ID = "1591924167";
+let APPLE_SHOW_SLUG = "aa-grapevines-podcast";
+let YOUTUBE_VIDEOS = [];
+// Apple Podcasts episode IDs (the numeric i= value from each episode page).
+let PODCAST_EPISODES = [];
+// Grapevine Instagram @alcoholicsanonymous_gv (verified official)
+let INSTAGRAM_POSTS = [];
+// GVR page documents — loaded from data/gvr_documents.csv
+let GVR_DOCUMENTS = [];
+let ABOUT_PRODUCTS = [];
+let FAQ_DATA = [];
+let SCRIPTS_DATA = [];
+// Auto-sort announcements newest first and filter out older than 90 days — runs after CSV load
+let RECENT_ANN = [];
+function buildRecentAnn(){const cutoff=new Date();cutoff.setDate(cutoff.getDate()-90);RECENT_ANN=ANNOUNCEMENTS.filter(a=>new Date(a.date+"T23:59:59")>=cutoff).sort((a,b)=>b.date.localeCompare(a.date))}
+
+/* ── CSV Data Loader ───────────────────────────────────────────────
+   All content data is loaded from CSV files in the data/ directory.
+   Each CSV uses standard RFC 4180 format (quoted fields for commas/quotes).
+   File links can be local paths or full Google Drive URLs.
+   Spanish translations use _es suffixed columns.
+   ────────────────────────────────────────────────────────────── */
+function parseCSV(text){
+  var rows=[],i=0,len=text.length,LF="\n",CR="\r",QT='"',CM=",";
+  if(text.charCodeAt(0)===0xFEFF)i=1;
+  function isEOL(){return i>=len||text[i]===LF||text[i]===CR}
+  function parseField(){
+    if(isEOL())return"";
+    if(text[i]===QT){
+      i++;var v="";
+      while(i<len){if(text[i]===QT){if(i+1<len&&text[i+1]===QT){v+=QT;i+=2}else{i++;break}}else{v+=text[i];i++}}
+      return v;
+    }
+    var v="";
+    while(i<len&&text[i]!==CM&&text[i]!==LF&&text[i]!==CR){v+=text[i];i++}
+    return v;
+  }
+  function consumeEOL(){if(i<len&&text[i]===CR)i++;if(i<len&&text[i]===LF)i++}
+  function parseRow(){
+    var row=[parseField()];
+    while(i<len&&text[i]===CM){i++;row.push(parseField())}
+    consumeEOL();
+    return row;
+  }
+  if(i>=len)return[];
+  var headers=parseRow();
+  while(i<len){
+    if(text[i]===LF||text[i]===CR){consumeEOL();continue}
+    var row=parseRow();
+    if(row.length===1&&row[0]==="")continue;
+    var obj={};
+    for(var c=0;c<headers.length;c++){obj[headers[c]]=row[c]!==undefined?row[c]:""}
+    rows.push(obj);
+  }
+  return rows;
+}
+async function fetchCSV(path){
+  try{
+    const resp=await fetch(path);
+    if(!resp.ok)return[];
+    const text=await resp.text();
+    return parseCSV(text);
+  }catch(e){console.warn("CSV load error ("+path+"):",e);return[]}
+}
+async function loadAllCSV(){
+  const [ann,ev,photos,reports,notes,slides,yt,pods,insta,res,ecal,tl,cfg,gvrdocs,subs,aprods,faqrows,scriptrows,subtypes]=await Promise.all([
+    fetchCSV("data/announcements.csv"),
+    fetchCSV("data/events.csv"),
+    fetchCSV("data/photos.csv"),
+    fetchCSV("data/reports.csv"),
+    fetchCSV("data/meeting_notes.csv"),
+    fetchCSV("data/meeting_slides.csv"),
+    fetchCSV("data/youtube.csv"),
+    fetchCSV("data/podcasts.csv"),
+    fetchCSV("data/instagram.csv"),
+    fetchCSV("data/resources.csv"),
+    fetchCSV("data/editorial_calendar.csv"),
+    fetchCSV("data/timeline.csv"),
+    fetchCSV("data/config.csv"),
+    fetchCSV("data/gvr_documents.csv"),
+    fetchCSV("data/subscriptions.csv"),
+    fetchCSV("data/about_products.csv"),
+    fetchCSV("data/faq.csv"),
+    fetchCSV("data/scripts.csv"),
+    fetchCSV("data/submission_types.csv"),
+  ]);
+  ANNOUNCEMENTS=ann;
+  SPECIAL_EVENTS=ev;
+  BOOTH_PHOTOS=photos;
+  REPORTS=reports;
+  MEETING_NOTES=notes;
+  MEETING_SLIDES=slides;
+  YOUTUBE_VIDEOS=yt;
+  PODCAST_EPISODES=pods;
+  INSTAGRAM_POSTS=insta.map(r=>r.id);
+  RESOURCES=res;
+  EDITORIAL_CALENDAR=ecal;
+  TIMELINE=tl;
+  GVR_DOCUMENTS=gvrdocs;
+  ABOUT_PRODUCTS=aprods;
+  FAQ_DATA=faqrows;
+  SCRIPTS_DATA=scriptrows;
+  if(subtypes.length)SUBMISSION_TYPES=subtypes;
+  // Parse subscription tiers from CSV — features are pipe-delimited with +/- prefixes
+  SUBSCRIPTION_TIERS=subs.map(r=>{
+    function parseFeatures(s){if(!s)return[];return s.split("|").map(f=>{const ok=f.charAt(0)==="+";return{ok:ok,text:f.substring(1),text_es:""}})}
+    function parseFeaturesEs(s){if(!s)return[];return s.split("|").map(f=>{const ok=f.charAt(0)==="+";return{ok:ok,text:"",text_es:f.substring(1)}})}
+    const fEn=parseFeatures(r.features);
+    const fEs=parseFeaturesEs(r.features_es);
+    const features=fEn.map((f,i)=>({ok:f.ok,text:f.text,text_es:fEs[i]?fEs[i].text_es:""}));
+    return{section:r.section,theme:r.theme,name:r.name,name_es:r.name_es,price:r.price,period:r.period,period_es:r.period_es,features:features,ctaUrl:r.cta_url,ctaLabel:r.cta_label,ctaLabel_es:r.cta_label_es,badge:r.badge||null,badge_es:r.badge_es||null}
+  });
+  // Apply config.csv key-value pairs to runtime objects
+  applyConfig(cfg);
+  // Build computed arrays
+  buildEvents();
+  buildRecentAnn();
+}
+function applyConfig(cfg){
+  const c={};cfg.forEach(r=>{c[r.key]={v:r.value||"",es:r.value_es||""}});
+  function v(k){return c[k]?c[k].v:""}
+  function es(k){return c[k]?c[k].es:""}
+  if(v("drive_reports"))GOOGLE_DRIVE.reports=v("drive_reports");
+  if(v("drive_notes"))GOOGLE_DRIVE.notes=v("drive_notes");
+  if(v("drive_slides"))GOOGLE_DRIVE.slides=v("drive_slides");
+  if(v("drive_flyers"))GOOGLE_DRIVE.flyers=v("drive_flyers");
+  if(v("drive_photos"))GOOGLE_DRIVE.photos=v("drive_photos");
+  if(v("meeting_schedule")){MEETING_INFO.schedule=v("meeting_schedule");MEETING_INFO.schedule_es=es("meeting_schedule")||v("meeting_schedule")}
+  if(v("meeting_time"))MEETING_INFO.time=v("meeting_time");
+  if(v("meeting_platform"))MEETING_INFO.platform=v("meeting_platform");
+  if(v("meeting_zoom_link"))MEETING_INFO.zoomLink=v("meeting_zoom_link");
+  if(v("meeting_id"))MEETING_INFO.meetingId=v("meeting_id");
+  if(v("meeting_passcode"))MEETING_INFO.passcode=v("meeting_passcode");
+  if(v("meeting_chair")){MEETING_INFO.chair=v("meeting_chair");MEETING_INFO.chair_es=es("meeting_chair")||v("meeting_chair")}
+  if(v("meeting_chair_email"))MEETING_INFO.chairEmail=v("meeting_chair_email");
+  if(v("meeting_notes")){MEETING_INFO.additionalNotes=v("meeting_notes");MEETING_INFO.additionalNotes_es=es("meeting_notes")||v("meeting_notes")}
+  if(v("weekly_zoom_id"))WEEKLY_OPEN.zoomId=v("weekly_zoom_id");
+  if(v("weekly_passcode"))WEEKLY_OPEN.passcode=v("weekly_passcode");
+  if(v("weekly_day"))WEEKLY_OPEN.day=v("weekly_day");
+  if(v("weekly_time"))WEEKLY_OPEN.time=v("weekly_time");
+  if(v("apple_show_id"))APPLE_SHOW_ID=v("apple_show_id");
+  if(v("apple_show_slug"))APPLE_SHOW_SLUG=v("apple_show_slug");
+  if(v("traditions_en_url"))TRADITIONS_CHECKLIST.en_url=v("traditions_en_url");
+  if(v("traditions_es_url"))TRADITIONS_CHECKLIST.es_url=v("traditions_es_url");
+  if(v("traditions_title")){TRADITIONS_CHECKLIST.title=v("traditions_title");TRADITIONS_CHECKLIST.title_es=es("traditions_title")||v("traditions_title")}
+  if(v("traditions_description")){TRADITIONS_CHECKLIST.description=v("traditions_description");TRADITIONS_CHECKLIST.description_es=es("traditions_description")||v("traditions_description")}
+  if(v("traditions_copyright")){TRADITIONS_CHECKLIST.copyright=v("traditions_copyright");TRADITIONS_CHECKLIST.copyright_es=es("traditions_copyright")||v("traditions_copyright")}
+  if(v("support_prompt")){SUPPORT_CONTACT.prompt=v("support_prompt");SUPPORT_CONTACT.prompt_es=es("support_prompt")||v("support_prompt")}
+  if(v("support_usa"))SUPPORT_CONTACT.lines[0].value=v("support_usa");
+  if(v("support_international"))SUPPORT_CONTACT.lines[1].value=v("support_international");
+  if(v("support_spanish"))SUPPORT_CONTACT.lines[2].value=v("support_spanish");
+  if(v("lv_pautas_url"))SUBMIT_CHANNELS.lv.extraCta.url=v("lv_pautas_url");
+  if(v("gvr_register_url"))GVR_REGISTER_URL=v("gvr_register_url");
+  if(v("rlv_register_url"))RLV_REGISTER_URL=v("rlv_register_url");
+  if(v("carry_the_message_url"))CARRY_THE_MESSAGE_URL=v("carry_the_message_url");
+  if(v("spotify_show_url"))SPOTIFY_SHOW_URL=v("spotify_show_url");
+  if(v("apple_podcast_url"))APPLE_PODCAST_URL=v("apple_podcast_url");
+  if(v("amazon_podcast_url"))AMAZON_PODCAST_URL=v("amazon_podcast_url");
+  if(v("podcast_web_url"))PODCAST_WEB_URL=v("podcast_web_url");
+  if(v("weekly_open_url"))WEEKLY_OPEN_URL=v("weekly_open_url");
+  if(v("youtube_channel_url"))YOUTUBE_CHANNEL_URL=v("youtube_channel_url");
+  if(v("instagram_gv_url"))INSTAGRAM_GV_URL=v("instagram_gv_url");
+  if(v("instagram_lv_url"))INSTAGRAM_LV_URL=v("instagram_lv_url");
+  if(v("instagram_gv_handle"))INSTAGRAM_GV_HANDLE=v("instagram_gv_handle");
+  if(v("instagram_lv_handle"))INSTAGRAM_LV_HANDLE=v("instagram_lv_handle");
+  if(v("gv_apps_url"))GV_APPS_URL=v("gv_apps_url");
+  if(v("gv_follow_url"))GV_FOLLOW_URL=v("gv_follow_url");
+  if(v("gv_contribute_url"))GV_CONTRIBUTE_URL=v("gv_contribute_url");
+  if(v("gv_guidelines_url"))GV_GUIDELINES_URL=v("gv_guidelines_url");
+  if(v("gift_cta_url"))GIFT_CTA_URL=v("gift_cta_url");
+  if(v("submit_gv_online_url"))SUBMIT_CHANNELS.gv.items[0].url=v("submit_gv_online_url");
+  if(v("submit_gv_online_text"))SUBMIT_CHANNELS.gv.items[0].text=v("submit_gv_online_text");
+  if(v("submit_gv_email")){SUBMIT_CHANNELS.gv.items[1].text=v("submit_gv_email");SUBMIT_CHANNELS.gv.items[1].url="mailto:"+v("submit_gv_email")}
+  if(v("submit_gv_mail"))SUBMIT_CHANNELS.gv.items[2].text=v("submit_gv_mail");
+  if(v("submit_lv_online_url"))SUBMIT_CHANNELS.lv.items[0].url=v("submit_lv_online_url");
+  if(v("submit_lv_online_text"))SUBMIT_CHANNELS.lv.items[0].text=v("submit_lv_online_text");
+  if(v("submit_lv_email")){SUBMIT_CHANNELS.lv.items[1].text=v("submit_lv_email");SUBMIT_CHANNELS.lv.items[1].url="mailto:"+v("submit_lv_email")}
+  if(v("submit_lv_mail"))SUBMIT_CHANNELS.lv.items[2].text=v("submit_lv_mail");
+  if(v("gift_cta_url"))SUBSCRIPTION_GIFT.ctaUrl=v("gift_cta_url");
+  if(v("gift_title")){SUBSCRIPTION_GIFT.title=v("gift_title");SUBSCRIPTION_GIFT.title_es=es("gift_title")||v("gift_title")}
+  if(v("gift_body")){SUBSCRIPTION_GIFT.body=v("gift_body");SUBSCRIPTION_GIFT.body_es=es("gift_body")||v("gift_body")}
+  if(v("gift_cta_label")){SUBSCRIPTION_GIFT.ctaLabel=v("gift_cta_label");SUBSCRIPTION_GIFT.ctaLabel_es=es("gift_cta_label")||v("gift_cta_label")}
+  if(v("gift_bullets")){
+    const enB=v("gift_bullets").split("|");
+    const esB=(es("gift_bullets")||v("gift_bullets")).split("|");
+    SUBSCRIPTION_GIFT.bullets=enB.map((b,i)=>({text:b,text_es:esB[i]||b}));
+  }
+}
+
+/* ── Page Heroes ─────────────────────────────────────────────────
+   One entry per page. Each hero produces the gradient banner at
+   the top of a page (icon + title + subtitle). Subtitles support
+   {placeholder} variables that render functions inject at runtime
+   (e.g. event counts). Edit the title/subtitle text here — never
+   touch the render functions.
+   ────────────────────────────────────────────────────────────── */
+const PAGE_HEROES = {
+  home:       { icon:"",                       title:"Grapevine &amp;<br>La Viña Committee",    title_es:"Comité de<br>Grapevine y La Viña",        sub:"AA's Meeting in Print — Our Story in Every Language",                       sub_es:"La Reunión Impresa de AA — Nuestra Historia en Cada Idioma" },
+  about:      { icon:"bi-info-circle-fill",    title:"About Grapevine &amp; La Viña",           title_es:"Acerca de Grapevine y La Viña",          sub:"AA's Meeting in Print — 80+ years of history, {milestones} milestones",     sub_es:"La Reunión Impresa de AA — Más de 80 años de historia, {milestones} hitos" },
+  gvr:        { icon:"bi-person-badge-fill",   title:"GVR / RLV Corner",                        title_es:"Rincón del GVR / RLV",                   sub:"Everything Grapevine &amp; La Viña Representatives need",                   sub_es:"Todo lo que necesitan los Representantes de Grapevine y La Viña" },
+  subscribe:  { icon:"bi-cart-fill",           title:"Subscribe",                               title_es:"Suscribirse",                            sub:"Support AA Grapevine &amp; La Viña — entirely self-supporting through subscriptions", sub_es:"Apoya a AA Grapevine y La Viña — completamente autofinanciados mediante suscripciones" },
+  contribute: { icon:"bi-pencil-square",       title:"Contribute to Grapevine &amp; La Viña",   title_es:"Contribuir a Grapevine y La Viña",       sub:"Share your experience, strength, and hope with AA members worldwide",       sub_es:"Comparte tu experiencia, fortaleza y esperanza con miembros de AA en todo el mundo" },
+  meeting:    { icon:"bi-camera-video-fill",   title:"Meeting Details",                         title_es:"Detalles de la Reunión",                 sub:"Monthly committee meeting schedule and Zoom info",                          sub_es:"Horario de la reunión mensual del comité e información de Zoom" },
+  events:     { icon:"bi-calendar-event-fill", title:"Events",                                  title_es:"Eventos",                                sub:"{up} upcoming &middot; {pa} past",                                          sub_es:"{up} próximos &middot; {pa} pasados" },
+  documents:  { icon:"bi-folder-fill",         title:"Documents",                               title_es:"Documentos",                             sub:"Reports, meeting notes, and presentation slides",                           sub_es:"Informes, minutas y presentaciones" },
+  photos:     { icon:"bi-images",              title:"Event Gallery",                           title_es:"Galería de Eventos",                     sub:"{count} photos — booths, workshops, published authors, and more",      sub_es:"{count} fotos — mesas, talleres, autores publicados y más" },
+  media:      { icon:"bi-play-circle-fill",    title:"Listen &amp; Watch",                      title_es:"Escuchar y Ver",                         sub:"Podcast, videos, and social media from AA Grapevine — refreshes each visit", sub_es:"Podcast, videos y redes sociales de AA Grapevine — se actualizan en cada visita" },
+  resources:  { icon:"bi-link-45deg",          title:"Resources",                               title_es:"Recursos",                               sub:"{count} links to help you connect, serve, and grow",                        sub_es:"{count} enlaces para ayudarte a conectar, servir y crecer" },
+};
+
+/* ── Home Page Quick & Browse Cards ──────────────────────────────
+   The two card grids on the Home page. Each entry navigates to
+   another page. Use {dynamic} placeholders inside desc/count and
+   render code substitutes via fmt(). Set `desc`/`count` to plain
+   strings if no substitution is needed.
+   ────────────────────────────────────────────────────────────── */
+const HOME_QUICK_CARDS = [
+  { id:"meeting",    icon:"bi-camera-video-fill",  bg:"bg-sky-50 text-sky-600",      title:"Next Meeting",  title_es:"Próxima Reunión",  desc:"{date}<br>{time}",                                                              desc_es:"{date}<br>{time}",                                                              count:"Zoom: {meetingId}",          count_es:"Zoom: {meetingId}" },
+  { id:"events",     icon:"bi-calendar-event-fill",bg:"bg-pink-50 text-pink-600",    title:"Events",        title_es:"Eventos",          desc:"{nextLine}",                                                                    desc_es:"{nextLine}",                                                                    count:"{n} upcoming",               count_es:"{n} próximos" },
+  { id:"subscribe",  icon:"bi-cart-fill",          bg:"bg-green-50 text-green-600",  title:"Subscribe",     title_es:"Suscribirse",      desc:"Print, digital, or both — support AA's self-supporting journal",                desc_es:"Impresa, digital o ambas — apoya la revista autofinanciada de AA",              count:"From $2.99/mo",              count_es:"Desde $2.99/mes" },
+  { id:"contribute", icon:"bi-pencil-square",      bg:"bg-amber-50 text-amber-600",  title:"Contribute",    title_es:"Contribuir",       desc:"Submit your story, art, or photos to Grapevine or La Viña",                     desc_es:"Envía tu historia, arte o fotos a Grapevine o La Viña",                         count:"Editorial calendar",         count_es:"Calendario editorial" },
+];
+const HOME_BROWSE_CARDS = [
+  { id:"about",     icon:"bi-info-circle-fill",  bg:"bg-blue-50 text-blue-600",   title:"About GV / La Viña",  title_es:"Acerca de GV / La Viña", desc:"Learn about AA's Meeting in Print, its history, and role in the service structure",                  desc_es:"Conoce la Reunión Impresa de AA, su historia y papel en la estructura de servicio",                count:"Since 1944",                  count_es:"Desde 1944" },
+  { id:"gvr",       icon:"bi-person-badge-fill",  bg:"bg-purple-50 text-purple-600",title:"GVR Corner",          title_es:"Rincón del RLV",        desc:"Resources, guides, and ideas for Grapevine &amp; La Viña Representatives",                            desc_es:"Recursos, guías e ideas para Representantes de Grapevine y La Viña",                                count:"Handbooks &amp; tools",        count_es:"Manuales y herramientas" },
+  { id:"documents", icon:"bi-folder-fill",        bg:"bg-purple-50 text-purple-600",title:"Documents",           title_es:"Documentos",            desc:"Committee reports, meeting notes, and slides",                                                       desc_es:"Informes del comité, minutas y presentaciones",                                                    count:"{r} reports &middot; {n} notes", count_es:"{r} informes &middot; {n} minutas" },
+  { id:"photos",    icon:"bi-images",              bg:"bg-pink-50 text-pink-600",   title:"Event Gallery",       title_es:"Galería de Eventos",    desc:"Photos from our booths, workshops, and assemblies",                                                  desc_es:"Fotos de nuestras mesas, talleres y asambleas",                                                    count:"{p} photos",                  count_es:"{p} fotos" },
+  { id:"media",     icon:"bi-play-circle-fill",   bg:"bg-green-50 text-green-600",  title:"Listen &amp; Watch",  title_es:"Escuchar y Ver",        desc:"Podcast, YouTube, and Instagram (@alcoholicsanonymous_gv &amp; @alcoholicosanonimos_lv)",             desc_es:"Podcast, YouTube e Instagram (@alcoholicsanonymous_gv y @alcoholicosanonimos_lv)",                  count:"New episodes weekly",         count_es:"Episodios nuevos cada semana" },
+  { id:"resources", icon:"bi-link-45deg",         bg:"bg-sky-50 text-sky-600",     title:"Resources",            title_es:"Recursos",              desc:"Apps, books, sobriety calculator, and more",                                                         desc_es:"Aplicaciones, libros, calculadora de sobriedad y más",                                              count:"{n} links",                   count_es:"{n} enlaces" },
+];
+
+/* ── Subscription Tiers ──────────────────────────────────────────
+   Each tier produces one pricing card on the Subscribe page.
+   `section`: "gv" or "lv" — groups cards under section headers
+   `theme`:   "brand" (blue) or "amber"
+   `badge`:   optional ribbon ("Best Value", "Promo", etc.)
+   `features`: list of {ok, text, text_es} — ok=false renders an X
+   ────────────────────────────────────────────────────────────── */
+let SUBSCRIPTION_TIERS = [];
+// Subscribe page — section headers above each group of tiers
+const SUBSCRIPTION_SECTIONS = {
+  gv: { icon:"bi-journal-richtext", iconBg:"bg-brand-50 text-brand-600",  name:"AA Grapevine", name_es:"AA Grapevine", tagline:"Monthly magazine — print, digital, or both", tagline_es:"Revista mensual — impresa, digital o ambas" },
+  lv: { icon:"bi-translate",         iconBg:"bg-amber-50 text-amber-600", name:"La Viña",       name_es:"La Viña",       tagline:"Bimonthly Spanish-language magazine",         tagline_es:"Revista bimestral en español" },
+};
+// Subscribe page — gift subscription card (sits beside LV tiers)
+let SUBSCRIPTION_GIFT = {
+  icon:"bi-gift",
+  title:"Gift Subscriptions &amp; Carry the Message",  title_es:"Suscripciones de Regalo y Lleva el Mensaje",
+  body:"Give the gift of Grapevine or La Viña to a sponsee, newcomer, or someone who can't afford a subscription. Perfect for:",
+  body_es:"Regala una suscripción de Grapevine o La Viña a un ahijado, recién llegado o alguien que no puede pagarla. Perfecto para:",
+  bullets:[
+    { text:"Anniversary gifts",                   text_es:"Regalos de aniversario" },
+    { text:"Correctional &amp; treatment facilities", text_es:"Instituciones correccionales y de tratamiento" },
+    { text:"Doctor's offices &amp; waiting rooms",     text_es:"Consultorios médicos y salas de espera" },
+    { text:"Newcomer welcome packages",                text_es:"Paquetes de bienvenida para recién llegados" },
+  ],
+  ctaUrl:"",
+  ctaLabel:"Carry the Message", ctaLabel_es:"Lleva el Mensaje",
+  ctaIcon:"bi-heart",
+};
+
+// Support Contact — defaults overwritten from data/config.csv
+let SUPPORT_CONTACT = {
+  prompt:"", prompt_es:"",
+  lines:[
+    { label:"USA:",          label_es:"EE.UU.:",        value:"" },
+    { label:"International:",label_es:"Internacional:", value:"" },
+    { label:"En Español:",   label_es:"En Español:",    value:"" },
+  ],
+};
+
+/* ── Submission Types (Contribute page) ──────────────────────────
+   The "What You Can Submit" cards. Add or remove as needed.
+   ────────────────────────────────────────────────────────────── */
+let SUBMISSION_TYPES = [];
+
+/* ── Submit Channels (Contribute page) ───────────────────────────
+   Per-magazine submission methods. `theme` controls color (brand
+   = blue for GV, amber for LV). `items` list any number of methods.
+   ────────────────────────────────────────────────────────────── */
+const SUBMIT_CHANNELS = {
+  gv: {
+    theme:"brand",
+    heading:"How to Submit", heading_es:"Cómo Enviar",
+    headingIcon:"bi-send",
+    items:[
+      { num:1, label:"Online (easiest)", label_es:"En línea (lo más fácil)", text:"",                                     url:"" },
+      { num:2, label:"Email",            label_es:"Correo electrónico",      text:"",                                  url:"" },
+      { num:3, label:"Mail",             label_es:"Correo postal",           text:"", url:"" },
+    ],
+    footer:"Include your full name, address, phone, and email. Keep a copy — manuscripts cannot be returned. Stories are needed <strong>5 months before</strong> publication.",
+    footer_es:"Incluye tu nombre completo, dirección, teléfono y correo electrónico. Guarda una copia — los manuscritos no se devuelven. Las historias se necesitan <strong>5 meses antes</strong> de la publicación.",
+  },
+  lv: {
+    theme:"amber",
+    heading:"Contribute to La Viña (Spanish)", heading_es:"Contribuir a La Viña (Español)",
+    headingIcon:"bi-translate",
+    intro:"La Viña accepts stories, art, and photos from AA members in Spanish. Share your experience, strength, and hope with the Spanish-speaking community.",
+    intro_es:"La Viña acepta historias, arte y fotos de miembros de AA en español. Comparta su experiencia, fortaleza y esperanza con la comunidad hispanohablante.",
+    items:[
+      { num:1, label:"Online", label_es:"En línea",          text:"",                          url:"" },
+      { num:2, label:"Email",  label_es:"Correo electrónico", text:"",                                    url:"" },
+      { num:3, label:"Mail",   label_es:"Correo postal",      text:"", url:"" },
+    ],
+    footer:"Include your full name, address, phone, and email. Stories are needed <strong>5 months before</strong> publication.",
+    footer_es:"Incluya su nombre completo, dirección, teléfono y correo electrónico. Las historias se necesitan <strong>5 meses antes</strong> de la publicación.",
+    extraCta:{ url:"", icon:"bi-file-earmark-pdf", label:"Pautas para Colaborar (PDF)", label_es:"Pautas para Colaborar (PDF)" },
+  },
+};
+/* ================================================================ END CONFIG ================================================================ */
+
+// Language state (loaded from localStorage)
+let _lang=(function(){try{return localStorage.getItem("gv_lang")}catch(e){return null}})()||"en";
+// Translation helper — returns English or Spanish based on current lang
+function t(en,es){return _lang==="es"?es:en}
+// Object-field translation — picks `<field>_es` when in Spanish mode, else `<field>`
+// Used by data-driven render code so each array entry can carry both languages
+function tx(obj,field){if(!obj)return"";return _lang==="es"&&obj[field+"_es"]?obj[field+"_es"]:(obj[field]||"")}
+// Tiny string-template helper — replaces {key} placeholders with vars[key]
+// Used by PAGE_HEROES subtitles so dynamic counts like {N} can be injected at render time
+function fmt(s,vars){if(!s)return"";if(!vars)return s;return s.replace(/\{(\w+)\}/g,(_,k)=>vars[k]!==undefined?vars[k]:"")}
+// Standard page hero block — DRYs up the duplicated hero markup across every page
+// `key` looks up an entry in PAGE_HEROES; `vars` are substituted into the subtitle template
+function heroHtml(key,vars){const h=PAGE_HEROES[key];if(!h)return"";const title=fmt(tx(h,"title"),vars);const sub=fmt(tx(h,"sub"),vars);const iconHtml=h.icon?`<i class="bi ${h.icon}"></i> `:"";return `<div class="bg-gradient-to-br from-slate-900 via-brand-700 to-brand-600 text-white pt-20 md:pt-24 pb-10 md:pb-14 relative overflow-hidden hero-mesh"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">${iconHtml}${title}</h1>
+      <p class="opacity-80 text-sm mt-1">${sub}</p>
+    </div></div>`}
+// Re-render all pages (called on language toggle)
+function renderAll(){renderNav();renderHome();renderAbout();renderGVR();renderSubscribe();renderContribute();renderMeeting();renderEvents();renderDocuments();renderPhotos();renderMedia();renderResources();applyLang();if(currentPage!=="home")clearInterval(cdTimer);if(currentPage!=="photos")stopGal()}
+
+// Helpers — supports full URLs (Google Drive, etc.) or local paths
+function fp(f,n){if(!n)return"#";if(n.startsWith("http://") || n.startsWith("https://"))return n;const b=BASE_PATH?BASE_PATH.replace(/\/$/,""):".";return b+"/"+f+"/"+n}
+// Google Drive URL handling — accepts ANY of these sharing-link formats and
+// extracts the file ID:
+//   https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+//   https://drive.google.com/file/d/FILE_ID/preview
+//   https://drive.google.com/open?id=FILE_ID
+//   https://drive.google.com/uc?export=download&id=FILE_ID
+//   https://docs.google.com/(document|spreadsheets|presentation)/d/FILE_ID/...
+// Returns null when the URL is not a recognized Drive/Docs URL.
+function driveFileId(url){
+  if(!url||typeof url!=="string")return null;
+  let m;
+  if((m=url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)))return m[1];
+  if((m=url.match(/\/(?:document|spreadsheets|presentation)\/d\/([a-zA-Z0-9_-]+)/)))return m[1];
+  // Only match ?id= on Google domains — avoids false positives on other sites
+  if(/drive\.google\.com|docs\.google\.com/.test(url)&&(m=url.match(/[?&]id=([a-zA-Z0-9_-]+)/)))return m[1];
+  return null;
+}
+// Transforms a URL into the right form for a given use case.
+// Pass-through (returns as-is) if the URL is not a Drive/Docs URL.
+//   mode "view"     — open the file in Drive's viewer page (default; use for <a href>)
+//   mode "preview"  — embeddable preview URL (use for iframe src — PDFs, Docs, Slides, Sheets)
+//   mode "image"    — image URL suitable for <img src> (uses Drive thumbnail endpoint)
+//   mode "download" — direct-download URL (use for the modal's Download button)
+function driveUrl(url,mode){
+  const id=driveFileId(url);
+  if(!id)return url||"";
+  switch(mode){
+    case "preview":  return "https://drive.google.com/file/d/"+id+"/preview";
+    case "image":    return "https://drive.google.com/thumbnail?id="+id+"&sz=w2000";
+    case "download": return "https://drive.google.com/uc?export=download&id="+id;
+    case "view":
+    default:         return "https://drive.google.com/file/d/"+id+"/view";
+  }
+}
+function fd(s){return new Date(s+"T00:00:00").toLocaleDateString(_lang==="es"?"es":"en-US",{year:"numeric",month:"long",day:"numeric"})}
+// Translate "Month YYYY" strings like "March 2026" to locale
+const _moEN=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const _moES=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+function tMonth(s){if(_lang!=="es")return s;const parts=s.split(" ");if(parts.length===2){const idx=_moEN.indexOf(parts[0]);if(idx>=0)return _moES[idx]+" "+parts[1]}return s}
+function sm(s){return new Date(s+"T00:00:00").toLocaleDateString(_lang==="es"?"es":"en-US",{month:"short"})}
+function dn(s){return new Date(s+"T00:00:00").getDate()}
+function isF(s){return new Date(s+"T23:59:59")>=new Date()}
+function rd(s){const d=new Date(s+"T00:00:00"),n=new Date(),df=Math.ceil((d-n)/864e5);if(df===0)return t("Today","Hoy");if(df===1)return t("Tomorrow","Mañana");if(df>0&&df<=7)return t("In "+df+" days","En "+df+" días");return fd(s)}
+
+// Shared YouTube video card renderer — uses data attributes to avoid quote-escaping issues
+function vidCard(v){const safeTitle=v.title.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/</g,"&lt;");const langAttr=v.lang?` lang="${v.lang}"`:"";return `<div class="bg-white border border-slate-200 rounded-xl overflow-hidden card-lift hover:border-brand-100 cursor-pointer group yt-card"${langAttr} role="button" tabindex="0" aria-label="Play: ${safeTitle}" data-ytid="${v.id}" data-yttitle="${safeTitle}" onkeydown="if(event.key==='Enter')this.click()"><div class="yt-thumb relative aspect-video bg-slate-900 overflow-hidden"><img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="${safeTitle}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"><div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/15 transition-colors"><i class="bi bi-play-circle-fill text-5xl text-white drop-shadow-lg"></i></div></div><div class="p-3"><h6 class="text-sm font-semibold text-slate-900">${v.title}</h6></div></div>`}
+// Delegated click handler for YouTube cards — safe from quote issues
+document.addEventListener("click",function(e){const card=e.target.closest(".yt-card");if(!card)return;const id=card.dataset.ytid;const title=card.dataset.yttitle;if(!id)return;const thumb=card.querySelector(".yt-thumb");if(!thumb)return;thumb.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" title="'+title+'" style="position:absolute;inset:0;width:100%;height:100%" allow="autoplay;encrypted-media" allowfullscreen></iframe>'})
+
+// GVR document card renderer — generates a download card from a GVR_DOCUMENTS row
+function gvrDocCard(d,colorClass,iconBgClass){const hoverBorder=colorClass==="brand-100"?"hover:border-brand-100":"hover:border-amber-100";return `<a href="${d.url}" target="_blank" rel="noopener" class="flex items-start gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3.5 no-underline text-inherit card-lift ${hoverBorder} group"><div class="w-9 h-9 ${iconBgClass} rounded-lg flex items-center justify-center text-base shrink-0 mt-0.5"><i class="bi ${d.icon}"></i></div><div class="flex-1 min-w-0"><h6 class="text-sm font-semibold text-slate-900 m-0">${tx(d,"title")}</h6><p class="text-[.72rem] text-slate-500 mt-0.5 m-0">${tx(d,"description")}</p></div><i class="bi bi-download text-slate-300 text-xs shrink-0 mt-1"></i></a>`}
+
+// Clipboard copy with visual feedback
+function copyText(text,btn){navigator.clipboard.writeText(text).then(()=>{const orig=btn.innerHTML;btn.innerHTML='<i class="bi bi-check-lg"></i> '+t("Copied!","¡Copiado!");btn.classList.add('!bg-green-50','!text-green-600','!border-green-200');setTimeout(()=>{btn.innerHTML=orig;btn.classList.remove('!bg-green-50','!text-green-600','!border-green-200')},1500)}).catch(()=>{prompt("Copy this:",text)})}
+
+// Share text via native share API or clipboard fallback
+function shareText(title,text){if(navigator.share){navigator.share({title:title,text:text}).catch(()=>{})}else{navigator.clipboard.writeText(text).then(()=>{showToast(t("Copied to clipboard — paste in your message!","¡Copiado al portapapeles — pega en tu mensaje!"))}).catch(()=>{prompt("Copy this to share:",text)})}}
+function showToast(msg){let el=document.getElementById("toast");if(!el){el=document.createElement("div");el.id="toast";el.className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-xl z-[1100] transition-all duration-300 opacity-0 translate-y-2";document.body.appendChild(el)}el.textContent=msg;el.classList.remove("opacity-0","translate-y-2");el.classList.add("opacity-100","translate-y-0");setTimeout(()=>{el.classList.add("opacity-0","translate-y-2");el.classList.remove("opacity-100","translate-y-0")},2500)}
+
+/* ================================================================
+   GRAPEVINE CANVAS — Botanically-detailed animated grapevines
+   Features: woody branching canes, spiral tendrils, five-lobed
+   palmate leaves with veins, conical grape clusters, string lights,
+   and floating luminous particles. Mouse/touch interactive.
+   ================================================================ */
+const GV_CANVAS = (function(){
+  let cvs,ctx,W,H,raf=null,scene=null,mouseX=-1,mouseY=-1;
+  // Offscreen canvas for static elements (canes, branches, leaves, clusters, tendrils)
+  let staticCvs=null,staticCtx=null,staticDirty=true;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const PI=Math.PI, TAU=PI*2;
+  // Throttle: target ~18fps (every ~55ms) instead of 60fps
+  const FRAME_INTERVAL=55;
+  let lastDrawTime=0;
+  let tabVisible=true;
+  function rnd(a,b){return Math.random()*(b-a)+a}
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+  function lerp(a,b,t){return a+(b-a)*t}
+  function dist(x1,y1,x2,y2){const dx=x1-x2,dy=y1-y2;return Math.sqrt(dx*dx+dy*dy)}
+  function bezPt(p0,p1,p2,p3,t){
+    const u=1-t;
+    return{x:u*u*u*p0.x+3*u*u*t*p1.x+3*u*t*t*p2.x+t*t*t*p3.x,
+           y:u*u*u*p0.y+3*u*u*t*p1.y+3*u*t*t*p2.y+t*t*t*p3.y}
+  }
+  const LCOL=[
+    {r:255,g:220,b:90},{r:255,g:190,b:60},{r:255,g:160,b:50},
+    {r:190,g:140,b:255},{r:160,g:110,b:240},
+    {r:110,g:210,b:255},{r:80,g:180,b:240},
+    {r:255,g:150,b:190},{r:255,g:120,b:160},
+    {r:130,g:235,b:180},{r:100,g:220,b:160},
+    {r:255,g:200,b:120},{r:220,g:180,b:255},{r:120,g:255,b:230},
+  ];
+  // ── Draw cane to a given context — uses pre-computed knots ──
+  function drawCane(c,baseW,opacity,knots){
+    const seg=c,steps=30; // reduced from 60
+    for(let pass=0;pass<2;pass++){ // reduced from 3 passes to 2
+      const w=baseW*(pass===0?1:0.5);
+      const a=opacity*(pass===0?1:0.45);
+      staticCtx.strokeStyle=pass===0?`rgba(170,140,105,${a})`:`rgba(130,100,75,${a})`;
+      staticCtx.lineWidth=w;
+      staticCtx.lineCap="round";staticCtx.lineJoin="round";
+      staticCtx.beginPath();
+      for(let i=0;i<=steps;i++){
+        const t=i/steps;
+        const pt=bezPt(seg.p0,seg.p1,seg.p2,seg.p3,t);
+        const wobble=pass>0?Math.sin(t*12+seg.p0.x*0.03)*w*0.3:0;
+        if(i===0)staticCtx.moveTo(pt.x+wobble,pt.y+wobble);
+        else staticCtx.lineTo(pt.x+wobble,pt.y+wobble);
+      }
+      staticCtx.stroke();
+    }
+    // Pre-computed bark knots
+    if(knots){knots.forEach(k=>{
+      const kp=bezPt(seg.p0,seg.p1,seg.p2,seg.p3,k.t);
+      staticCtx.fillStyle=`rgba(110,80,55,${opacity*0.5})`;
+      staticCtx.beginPath();
+      staticCtx.ellipse(kp.x,kp.y,k.rx,k.ry,k.rot,0,TAU);
+      staticCtx.fill();
+    })}
+  }
+  // ── Draw tendril to static canvas — pre-computed spiral points ──
+  function drawTendrilStatic(tr){
+    staticCtx.strokeStyle=`rgba(150,190,110,${tr.opacity*0.7})`;
+    staticCtx.lineWidth=2;
+    staticCtx.lineCap="round";
+    staticCtx.beginPath();
+    staticCtx.moveTo(tr.x,tr.y);
+    const stemEndX=tr.x+Math.cos(tr.angle)*tr.length*0.3;
+    const stemEndY=tr.y+Math.sin(tr.angle)*tr.length*0.3;
+    staticCtx.lineTo(stemEndX,stemEndY);
+    // Use pre-computed spiral points
+    tr.spiralPts.forEach(p=>staticCtx.lineTo(p.x,p.y));
+    staticCtx.stroke();
+    if(tr.hasSecond){
+      staticCtx.strokeStyle=`rgba(150,190,110,${tr.opacity*0.45})`;
+      staticCtx.lineWidth=1.2;
+      staticCtx.beginPath();
+      staticCtx.moveTo(stemEndX,stemEndY);
+      tr.secondPts.forEach(p=>staticCtx.lineTo(p.x,p.y));
+      staticCtx.stroke();
+    }
+  }
+  // ── Draw grape leaf to static canvas — no per-frame gradients ──
+  function drawGrapeLeafStatic(lf){
+    const s=lf.size,o=lf.opacity;
+    staticCtx.save();staticCtx.translate(lf.x,lf.y);staticCtx.rotate(lf.angle);
+    // Solid fill instead of per-frame gradient — huge perf win
+    staticCtx.fillStyle=`rgba(55,140,55,${o*0.45})`;
+    staticCtx.beginPath();
+    staticCtx.moveTo(0,s*0.4);
+    staticCtx.bezierCurveTo(s*0.05,s*0.2,s*0.15,s*0.1,s*0.35,s*0.15);
+    staticCtx.bezierCurveTo(s*0.45,s*0.05,s*0.3,-s*0.05,s*0.25,-s*0.1);
+    staticCtx.bezierCurveTo(s*0.5,-s*0.15,s*0.65,-s*0.3,s*0.55,-s*0.5);
+    staticCtx.bezierCurveTo(s*0.45,-s*0.45,s*0.35,-s*0.35,s*0.2,-s*0.4);
+    staticCtx.bezierCurveTo(s*0.25,-s*0.6,s*0.2,-s*0.8,s*0.1,-s*0.9);
+    staticCtx.bezierCurveTo(s*0.05,-s*1.0,0,-s*1.05,-s*0.05,-s*1.0);
+    staticCtx.bezierCurveTo(-s*0.1,-s*0.9,-s*0.15,-s*0.8,-s*0.1,-s*0.7);
+    staticCtx.bezierCurveTo(-s*0.2,-s*0.8,-s*0.25,-s*0.6,-s*0.2,-s*0.4);
+    staticCtx.bezierCurveTo(-s*0.35,-s*0.35,-s*0.45,-s*0.45,-s*0.55,-s*0.5);
+    staticCtx.bezierCurveTo(-s*0.65,-s*0.3,-s*0.5,-s*0.15,-s*0.25,-s*0.1);
+    staticCtx.bezierCurveTo(-s*0.3,-s*0.05,-s*0.45,s*0.05,-s*0.35,s*0.15);
+    staticCtx.bezierCurveTo(-s*0.15,s*0.1,-s*0.05,s*0.2,0,s*0.4);
+    staticCtx.closePath();
+    staticCtx.fill();
+    staticCtx.strokeStyle=`rgba(60,130,50,${o*0.35})`;
+    staticCtx.lineWidth=1;
+    staticCtx.stroke();
+    // Main veins only — skip secondary random veins
+    staticCtx.strokeStyle=`rgba(90,160,70,${o*0.4})`;
+    staticCtx.lineWidth=1.4;
+    staticCtx.beginPath();staticCtx.moveTo(0,s*0.3);staticCtx.lineTo(0,-s*0.85);staticCtx.stroke();
+    staticCtx.beginPath();staticCtx.moveTo(0,s*0.1);staticCtx.quadraticCurveTo(s*0.15,-s*0.2,s*0.45,-s*0.4);staticCtx.stroke();
+    staticCtx.beginPath();staticCtx.moveTo(0,s*0.1);staticCtx.quadraticCurveTo(-s*0.15,-s*0.2,-s*0.45,-s*0.4);staticCtx.stroke();
+    staticCtx.beginPath();staticCtx.moveTo(0,s*0.2);staticCtx.quadraticCurveTo(s*0.12,s*0.05,s*0.3,s*0.1);staticCtx.stroke();
+    staticCtx.beginPath();staticCtx.moveTo(0,s*0.2);staticCtx.quadraticCurveTo(-s*0.12,s*0.05,-s*0.3,s*0.1);staticCtx.stroke();
+    // Pre-computed secondary veins
+    staticCtx.strokeStyle=`rgba(90,160,70,${o*0.2})`;
+    staticCtx.lineWidth=0.8;
+    lf.veins.forEach(v=>{
+      staticCtx.beginPath();staticCtx.moveTo(v.x1,v.y1);staticCtx.lineTo(v.x2,v.y2);staticCtx.stroke();
+    });
+    staticCtx.restore();
+  }
+  // ── Draw grape cluster to static canvas — solid fills, no per-grape gradients ──
+  function drawGrapeClusterStatic(cl){
+    staticCtx.save();staticCtx.translate(cl.x,cl.y);
+    staticCtx.strokeStyle=`rgba(130,170,85,${cl.opacity*0.7})`;
+    staticCtx.lineWidth=2.5;
+    staticCtx.beginPath();staticCtx.moveTo(0,-cl.size*0.3);staticCtx.lineTo(0,0);staticCtx.stroke();
+    // Use pre-computed grapes with solid fills instead of per-grape gradients
+    cl.grapes.forEach(g=>{
+      const o=cl.opacity;
+      staticCtx.fillStyle=`hsla(${cl.hue},50%,15%,${o*0.3})`;
+      staticCtx.beginPath();staticCtx.arc(g.x+1.5,g.y+1.5,g.r*1.05,0,TAU);staticCtx.fill();
+      staticCtx.fillStyle=`hsla(${cl.hue},65%,48%,${o*0.75})`;
+      staticCtx.beginPath();staticCtx.arc(g.x,g.y,g.r,0,TAU);staticCtx.fill();
+      staticCtx.fillStyle=`hsla(${cl.hue},75%,88%,${o*0.35})`;
+      staticCtx.beginPath();staticCtx.arc(g.x-g.r*0.25,g.y-g.r*0.3,g.r*0.35,0,TAU);staticCtx.fill();
+    });
+    staticCtx.restore();
+  }
+  function makeSegBetween(x0,y0,x1,y1,curvature){
+    const dx=x1-x0,dy=y1-y0;
+    const nx=-dy,ny=dx;
+    const len=Math.sqrt(nx*nx+ny*ny)||1;
+    const off=curvature/len;
+    return{p0:{x:x0,y:y0},
+           p1:{x:x0+dx*0.3+nx*off*rnd(0.3,0.7),y:y0+dy*0.3+ny*off*rnd(0.3,0.7)},
+           p2:{x:x0+dx*0.7+nx*off*rnd(0.3,0.7),y:y0+dy*0.7+ny*off*rnd(0.3,0.7)},
+           p3:{x:x1,y:y1}};
+  }
+  // ── Build scene — pre-compute ALL random values at build time ──
+  function buildScene(){
+    const canes=[],branches=[],tendrils=[],leaves=[],clusters=[],stringLights=[],particles=[];
+    const isMobile=W<640,isTablet=W<1024;
+    const scale=isMobile?0.65:isTablet?0.8:1;
+    const cordonCount=isMobile?2:isTablet?3:3;
+    const cordonYs=[];
+    for(let i=0;i<cordonCount;i++){
+      cordonYs.push(H*(0.2+0.55*(i/(Math.max(cordonCount-1,1))))+rnd(-H*0.05,H*0.05));
+    }
+    cordonYs.forEach((baseY,ci)=>{
+      const fromLeft=ci%2===0;
+      const startX=fromLeft?rnd(-80,-20):W+rnd(20,80);
+      const endX=fromLeft?W+rnd(20,80):rnd(-80,-20);
+      const segCount=isMobile?2:3;
+      const segW=(endX-startX)/segCount;
+      let cx=startX,cy=baseY;
+      for(let s=0;s<segCount;s++){
+        const nx=cx+segW;
+        const ny=baseY+Math.sin((s+0.5)/segCount*PI)*rnd(-15,20)+rnd(-10,10);
+        const curvature=rnd(-25,25);
+        const seg=makeSegBetween(cx,cy,nx,ny,curvature);
+        const thickness=rnd(6,10)*(1-s*0.08)*scale;
+        // Pre-compute bark knots
+        const knots=[];
+        const knotCount=Math.floor(rnd(2,5));
+        for(let k=0;k<knotCount;k++){
+          knots.push({t:rnd(0.15,0.85),rx:thickness*rnd(0.6,1.1),ry:thickness*rnd(0.36,0.66),rot:rnd(0,PI)});
+        }
+        canes.push({seg,width:thickness,opacity:rnd(0.45,0.7),knots});
+        const shootCount=isMobile?Math.floor(rnd(1,3)):Math.floor(rnd(2,4));
+        for(let sh=0;sh<shootCount;sh++){
+          const st=rnd(0.12,0.88);
+          const sp=bezPt(seg.p0,seg.p1,seg.p2,seg.p3,st);
+          const shootAngle=-PI/2+rnd(-0.5,0.5);
+          const shootLen=rnd(50,140)*scale;
+          const shootEnd={x:sp.x+Math.cos(shootAngle)*shootLen,y:sp.y+Math.sin(shootAngle)*shootLen};
+          const shootSeg=makeSegBetween(sp.x,sp.y,shootEnd.x,shootEnd.y,rnd(-20,20));
+          const shootW=thickness*rnd(0.35,0.55);
+          const shootKnots=[];
+          const skc=Math.floor(rnd(1,3));
+          for(let k=0;k<skc;k++){shootKnots.push({t:rnd(0.15,0.85),rx:shootW*rnd(0.6,1.1),ry:shootW*rnd(0.36,0.66),rot:rnd(0,PI)})}
+          branches.push({seg:shootSeg,width:shootW,opacity:rnd(0.35,0.55),knots:shootKnots});
+          if(!isMobile&&Math.random()>0.35){
+            const lt=rnd(0.35,0.75);
+            const lp=bezPt(shootSeg.p0,shootSeg.p1,shootSeg.p2,shootSeg.p3,lt);
+            const latAngle=shootAngle+rnd(0.4,1.2)*(Math.random()>0.5?1:-1);
+            const latLen=shootLen*rnd(0.3,0.55);
+            const latEnd={x:lp.x+Math.cos(latAngle)*latLen,y:lp.y+Math.sin(latAngle)*latLen};
+            const latSeg=makeSegBetween(lp.x,lp.y,latEnd.x,latEnd.y,rnd(-12,12));
+            branches.push({seg:latSeg,width:shootW*rnd(0.4,0.6),opacity:rnd(0.3,0.45),knots:[]});
+            leaves.push({x:latEnd.x,y:latEnd.y,size:rnd(14,28)*scale,angle:latAngle+rnd(-0.5,0.5),opacity:rnd(0.5,0.75),veins:precomputeVeins(rnd(14,28)*scale)});
+            if(Math.random()>0.4){
+              tendrils.push(buildTendril(latEnd.x,latEnd.y,latAngle+rnd(-0.8,0.8),rnd(30,65)*scale,Math.random()>0.5?1:-1,rnd(0.4,0.6)));
+            }
+          }
+          leaves.push({x:shootEnd.x+rnd(-5,5),y:shootEnd.y+rnd(-5,5),size:rnd(18,36)*scale,angle:shootAngle+rnd(-0.8,0.8),opacity:rnd(0.5,0.8),veins:precomputeVeins(rnd(18,36)*scale)});
+          const shootLeaves=Math.floor(rnd(1,3));
+          for(let sl=0;sl<shootLeaves;sl++){
+            const slt=rnd(0.25,0.7);
+            const slp=bezPt(shootSeg.p0,shootSeg.p1,shootSeg.p2,shootSeg.p3,slt);
+            const side=Math.random()>0.5?1:-1;
+            const sz=rnd(14,30)*scale;
+            leaves.push({x:slp.x+side*rnd(6,14),y:slp.y+rnd(-4,4),size:sz,angle:shootAngle+side*rnd(0.6,1.4),opacity:rnd(0.45,0.7),veins:precomputeVeins(sz)});
+          }
+          if(Math.random()>0.3){
+            const tt=rnd(0.4,0.8);
+            const tp=bezPt(shootSeg.p0,shootSeg.p1,shootSeg.p2,shootSeg.p3,tt);
+            const tSide=Math.random()>0.5?1:-1;
+            tendrils.push(buildTendril(tp.x,tp.y,shootAngle+tSide*rnd(0.5,1.2),rnd(35,80)*scale,tSide,rnd(0.4,0.65)));
+          }
+          if(Math.random()<0.55){
+            const gct=rnd(0.15,0.5);
+            const gcp=bezPt(shootSeg.p0,shootSeg.p1,shootSeg.p2,shootSeg.p3,gct);
+            clusters.push(buildCluster(gcp.x+rnd(-5,5),gcp.y+rnd(8,20),rnd(13,24)*scale,pick([255,265,275,285,295,305]),rnd(0.6,0.85)));
+          }
+          const sLights=Math.floor(rnd(2,5));
+          for(let sli=0;sli<sLights;sli++){
+            const slt=rnd(0.1,0.9);
+            const slp=bezPt(shootSeg.p0,shootSeg.p1,shootSeg.p2,shootSeg.p3,slt);
+            stringLights.push({x:slp.x+rnd(-3,3),y:slp.y+rnd(3,10),baseR:rnd(3.5,7),glowR:rnd(25,50),col:pick(LCOL),phase:rnd(0,TAU),speed:rnd(0.6,2.2),brightness:rnd(0.6,1),wx:slp.x,wy:slp.y});
+          }
+        }
+        const cTendrils=Math.floor(rnd(1,3));
+        for(let ct=0;ct<cTendrils;ct++){
+          const tt=rnd(0.1,0.9);
+          const tp=bezPt(seg.p0,seg.p1,seg.p2,seg.p3,tt);
+          const tAngle=PI/2+rnd(-0.8,0.8);
+          tendrils.push(buildTendril(tp.x,tp.y,tAngle,rnd(30,70)*scale,Math.random()>0.5?1:-1,rnd(0.4,0.6)));
+        }
+        if(Math.random()<0.4){
+          const gt=rnd(0.2,0.8);
+          const gp=bezPt(seg.p0,seg.p1,seg.p2,seg.p3,gt);
+          clusters.push(buildCluster(gp.x,gp.y+rnd(12,28),rnd(14,24)*scale,pick([260,275,290,305]),rnd(0.6,0.85)));
+        }
+        const cLights=Math.floor(rnd(4,8));
+        for(let cli=0;cli<cLights;cli++){
+          const lt=rnd(0.05,0.95);
+          const lp=bezPt(seg.p0,seg.p1,seg.p2,seg.p3,lt);
+          const droop=rnd(4,12);
+          stringLights.push({x:lp.x,y:lp.y+droop,baseR:rnd(4.5,8.5),glowR:rnd(32,65),col:pick(LCOL),phase:rnd(0,TAU),speed:rnd(0.6,2.2),brightness:rnd(0.6,1),wx:lp.x,wy:lp.y});
+        }
+        cx=nx;cy=ny;
+      }
+    });
+    const pCount=isMobile?8:isTablet?14:20; // reduced particle counts
+    for(let i=0;i<pCount;i++){
+      particles.push({x:rnd(0,W),y:rnd(0,H),vx:rnd(-0.25,0.25),vy:rnd(-0.4,-0.08),r:rnd(2,4.5),col:pick(LCOL),phase:rnd(0,TAU),speed:rnd(0.5,1.5),life:rnd(0,1)});
+    }
+    scene={canes,branches,tendrils,leaves,clusters,stringLights,particles};
+    staticDirty=true;
+  }
+  // Pre-compute tendril spiral points at build time
+  function buildTendril(x,y,angle,length,curlDir,opacity){
+    const spirals=rnd(2.5,4);
+    const steps=30; // reduced from 50
+    const curlSpeed=spirals*TAU/steps;
+    const stemLen=length*0.3;
+    const stemEndX=x+Math.cos(angle)*stemLen;
+    const stemEndY=y+Math.sin(angle)*stemLen;
+    let cx2=stemEndX,cy2=stemEndY,curAngle=angle,radius=length*0.2;
+    const spiralPts=[];
+    for(let i=0;i<steps;i++){
+      curAngle+=curlDir*curlSpeed;radius*=0.97;
+      cx2+=Math.cos(curAngle)*radius*0.12;cy2+=Math.sin(curAngle)*radius*0.12;
+      spiralPts.push({x:cx2,y:cy2});
+    }
+    const hasSecond=Math.random()>0.5;
+    const secondPts=[];
+    if(hasSecond){
+      let sx=stemEndX,sy=stemEndY,r2=length*0.13,a2=angle+PI*0.3*curlDir;
+      for(let i=0;i<20;i++){
+        a2-=curlDir*curlSpeed*1.2;r2*=0.96;
+        sx+=Math.cos(a2)*r2*0.1;sy+=Math.sin(a2)*r2*0.1;
+        secondPts.push({x:sx,y:sy});
+      }
+    }
+    return{x,y,angle,length,opacity,spiralPts,hasSecond,secondPts};
+  }
+  // Pre-compute secondary leaf veins
+  function precomputeVeins(size){
+    const veins=[];
+    for(let v=0;v<5;v++){
+      const vt=rnd(0.2,0.6),vAngle=rnd(-1.2,1.2),vLen=size*rnd(0.15,0.3);
+      const vx=0,vy=size*0.3-size*vt*1.1;
+      veins.push({x1:vx,y1:vy,x2:vx+Math.cos(vAngle)*vLen,y2:vy+Math.sin(vAngle)*vLen});
+    }
+    return veins;
+  }
+  // Pre-compute grape positions in a cluster
+  function buildCluster(x,y,size,hue,opacity){
+    const rows=Math.max(4,Math.floor(size*0.55));
+    const grapeR=size*0.2;
+    const grapes=[];
+    for(let row=0;row<rows;row++){
+      const rowT=row/(rows-1);
+      const count=Math.max(1,Math.round(lerp(rows,1,rowT*rowT)));
+      const rowY=row*grapeR*1.7;
+      const rowW=(count-1)*grapeR*1.8;
+      for(let i=0;i<count;i++){
+        grapes.push({x:-rowW/2+i*grapeR*1.8+rnd(-grapeR*0.2,grapeR*0.2),y:rowY+rnd(-grapeR*0.15,grapeR*0.15),r:grapeR+rnd(-0.5,0.5)});
+      }
+    }
+    return{x,y,size,hue,opacity,grapes};
+  }
+  // ── Render all static elements to offscreen canvas (once per resize) ──
+  function renderStaticLayer(){
+    if(!staticCvs){staticCvs=document.createElement("canvas")}
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    staticCvs.width=W*dpr;staticCvs.height=H*dpr;
+    staticCtx=staticCvs.getContext("2d");
+    staticCtx.setTransform(dpr,0,0,dpr,0,0);
+    if(!scene)return;
+    scene.canes.forEach(c=>drawCane(c.seg,c.width,c.opacity,c.knots));
+    scene.branches.forEach(b=>drawCane(b.seg,b.width,b.opacity,b.knots));
+    scene.tendrils.forEach(tr=>drawTendrilStatic(tr));
+    scene.leaves.forEach(lf=>drawGrapeLeafStatic(lf));
+    scene.clusters.forEach(cl=>drawGrapeClusterStatic(cl));
+    // Also draw light wires (static)
+    scene.stringLights.forEach(l=>{
+      staticCtx.strokeStyle="rgba(200,200,200,0.15)";
+      staticCtx.lineWidth=0.8;
+      staticCtx.beginPath();staticCtx.moveTo(l.wx,l.wy);staticCtx.lineTo(l.x,l.y);staticCtx.stroke();
+    });
+    staticDirty=false;
+  }
+  // ── Main draw loop — only animates lights + particles over static layer ──
+  function draw(time){
+    if(!tabVisible){raf=requestAnimationFrame(draw);return}
+    // Throttle frame rate
+    if(time-lastDrawTime<FRAME_INTERVAL){raf=requestAnimationFrame(draw);return}
+    lastDrawTime=time;
+    ctx.clearRect(0,0,W,H);
+    if(!scene){raf=requestAnimationFrame(draw);return}
+    // Render static layer once (canes, branches, leaves, clusters, tendrils)
+    if(staticDirty)renderStaticLayer();
+    // Stamp the static layer
+    if(staticCvs)ctx.drawImage(staticCvs,0,0,W,H);
+    const t=time*0.001;
+    // Only animate: string lights (glow pulse + mouse interaction) and particles
+    scene.stringLights.forEach(l=>{
+      const pulse=0.3+0.7*((Math.sin(t*l.speed+l.phase)+1)/2);
+      const bri=l.brightness*pulse;
+      let boost=0;
+      if(mouseX>=0){
+        const d=dist(l.x,l.y,mouseX,mouseY);
+        if(d<150) boost=0.5*(1-d/150);
+      }
+      const tb=Math.min(bri+boost,1);
+      if(tb<0.02)return; // skip nearly-invisible lights
+      // Single simplified glow (1 gradient instead of 2)
+      const g1=ctx.createRadialGradient(l.x,l.y,0,l.x,l.y,l.glowR*tb);
+      g1.addColorStop(0,`rgba(${l.col.r},${l.col.g},${l.col.b},${tb*0.55})`);
+      g1.addColorStop(0.4,`rgba(${l.col.r},${l.col.g},${l.col.b},${tb*0.15})`);
+      g1.addColorStop(1,"rgba(0,0,0,0)");
+      ctx.fillStyle=g1;
+      ctx.beginPath();ctx.arc(l.x,l.y,l.glowR*tb,0,TAU);ctx.fill();
+      // Bulb — solid fill instead of gradient
+      const bulbR=l.baseR*(0.8+tb*0.4);
+      ctx.fillStyle=`rgba(${l.col.r},${l.col.g},${l.col.b},${tb*0.9})`;
+      ctx.beginPath();ctx.arc(l.x,l.y,bulbR,0,TAU);ctx.fill();
+      // Tiny bright center
+      ctx.fillStyle=`rgba(255,255,255,${tb*0.7})`;
+      ctx.beginPath();ctx.arc(l.x,l.y,bulbR*0.4,0,TAU);ctx.fill();
+    });
+    if(!reducedMotion){
+      scene.particles.forEach(p=>{
+        p.x+=p.vx;p.y+=p.vy;p.life+=0.002;
+        if(p.y<-10||p.life>1){p.x=(p.phase/TAU)*W;p.y=H+10;p.life=0}
+        const alpha=Math.sin(p.life*PI)*0.5*(0.5+0.5*Math.sin(t*p.speed+p.phase));
+        if(alpha>0.01){
+          // Simple circle instead of radial gradient
+          ctx.globalAlpha=alpha;
+          ctx.fillStyle=`rgb(${p.col.r},${p.col.g},${p.col.b})`;
+          ctx.beginPath();ctx.arc(p.x,p.y,p.r*2,0,TAU);ctx.fill();
+          ctx.globalAlpha=1;
+        }
+      });
+    }
+    raf=requestAnimationFrame(draw);
+  }
+  function resize(){
+    const hero=document.getElementById("homeHero");
+    if(!hero||!cvs)return;
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    W=hero.offsetWidth;H=hero.offsetHeight;
+    cvs.width=W*dpr;cvs.height=H*dpr;
+    cvs.style.width=W+"px";cvs.style.height=H+"px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    buildScene();
+  }
+  function onMove(e){
+    const hero=document.getElementById("homeHero");
+    if(!hero)return;
+    const rect=hero.getBoundingClientRect();
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    mouseX=cx-rect.left;mouseY=cy-rect.top;
+  }
+  function onLeave(){mouseX=-1;mouseY=-1}
+  let _resizeTimer=null;
+  function onResize(){clearTimeout(_resizeTimer);_resizeTimer=setTimeout(resize,200)}
+  function onVisChange(){tabVisible=!document.hidden}
+  return {
+    start:function(){
+      cvs=document.getElementById("grapevineCanvas");
+      if(!cvs)return;
+      if(raf){cancelAnimationFrame(raf);raf=null}
+      ctx=cvs.getContext("2d");
+      if(!ctx)return;
+      resize();
+      if(reducedMotion){renderStaticLayer();ctx.drawImage(staticCvs,0,0,W,H);return}
+      lastDrawTime=0;
+      raf=requestAnimationFrame(draw);
+      const hero=document.getElementById("homeHero");
+      if(hero){hero.addEventListener("mousemove",onMove);hero.addEventListener("touchmove",onMove,{passive:true});hero.addEventListener("mouseleave",onLeave)}
+      window.addEventListener("resize",onResize);
+      document.addEventListener("visibilitychange",onVisChange);
+    },
+    stop:function(){
+      if(raf){cancelAnimationFrame(raf);raf=null}
+      const hero=document.getElementById("homeHero");
+      if(hero){hero.removeEventListener("mousemove",onMove);hero.removeEventListener("touchmove",onMove);hero.removeEventListener("mouseleave",onLeave)}
+      window.removeEventListener("resize",onResize);
+      document.removeEventListener("visibilitychange",onVisChange);
+      mouseX=-1;mouseY=-1;
+    },
+  };
+})();
+
+// Router
+let currentPage="home";
+function navigate(id){currentPage=id;history.pushState(null,"","#"+id);document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const pg=document.getElementById("pg-"+id);if(pg)pg.classList.add("active");document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("active",a.dataset.nav===id));window.scrollTo({top:0,behavior:"instant"});closeSidebar();updateHeader();updateSidebarActive();if(id!=="photos")stopGal();if(id!=="home"){clearInterval(cdTimer);GV_CANVAS.stop()}if(id==="photos")startGal();if(id==="home"){startCountdown();GV_CANVAS.start()}}
+function toggleSidebar(){document.getElementById("sidebarOverlay").classList.add("open")}
+function closeSidebar(){document.getElementById("sidebarOverlay").classList.remove("open")}
+function renderNav(){document.getElementById("mNav").innerHTML=NAV_SECTIONS.map(s=>{const lbl=_lang==="es"?s.label_es:s.label;return `<li><a href="#${s.id}" data-nav="${s.id}" onclick="navigate('${s.id}');return false;" class="sidebar-nav-item flex items-center gap-3 px-4 py-3 rounded-lg text-slate-700 font-medium text-[.95rem] no-underline transition-all hover:text-brand-600 hover:bg-brand-50 mb-0.5 min-h-[44px]"><i class="bi ${s.icon} w-5 text-center text-base"></i> ${lbl}</a></li>`}).join("");updateSidebarActive()}
+function updateSidebarActive(){document.querySelectorAll(".sidebar-nav-item").forEach(a=>a.classList.toggle("active",a.dataset.nav===currentPage))}
+function handleHash(){const h=(location.hash||"#home").slice(1);const valid=NAV_SECTIONS.find(s=>s.id===h);const id=valid?h:"home";currentPage=id;document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const pg=document.getElementById("pg-"+id);if(pg)pg.classList.add("active");document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("active",a.dataset.nav===id));window.scrollTo({top:0,behavior:"instant"});closeSidebar();if(id!=="photos")stopGal();if(id!=="home"){clearInterval(cdTimer);GV_CANVAS.stop()}if(id==="photos")startGal();if(id==="home"){startCountdown();GV_CANVAS.start()}setTimeout(()=>{updateHeader();updateSidebarActive()},10)}
+window.addEventListener("hashchange",handleHash);
+window.addEventListener("popstate",handleHash);
+
+// Tab switcher & modal
+function sTab(g,tab,btn){const p=btn.closest('.page')||btn.parentElement.parentElement;p.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active','!bg-white','!text-brand-600','!shadow-sm','!font-semibold'));btn.classList.add('active','!bg-white','!text-brand-600','!shadow-sm','!font-semibold');p.querySelectorAll('.tpanel').forEach(x=>x.classList.remove('active'));document.getElementById(g+'-'+tab).classList.add('active')}
+function showEv(date,title){const ev=EVENTS.find(e=>e.date===date&&e.title===title);if(!ev)return;const evTitle=_lang==="es"&&ev.title_es?ev.title_es:ev.title;const evDesc=_lang==="es"&&ev.description_es?ev.description_es:ev.description;document.getElementById("evMT").textContent=evTitle;document.getElementById("evMB").innerHTML=`<div class="flex items-start gap-3 mb-3"><div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="bi bi-calendar3"></i></div><div><div class="text-xs font-semibold uppercase tracking-wide text-slate-500">${t("Date","Fecha")}</div><div class="text-sm">${fd(ev.date)}</div></div></div><div class="flex items-start gap-3 mb-3"><div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="bi bi-geo-alt"></i></div><div><div class="text-xs font-semibold uppercase tracking-wide text-slate-500">${t("Location","Ubicación")}</div><div class="text-sm">${ev.location}</div></div></div><p class="mt-3 text-sm text-slate-600">${evDesc}</p>`;const fb=document.getElementById("evMF");if(ev.flyerFile){const flyerPath=fp("flyers",ev.flyerFile);fb.href=driveFileId(flyerPath)?driveUrl(flyerPath,"view"):flyerPath;fb.style.display=""}else{fb.style.display="none"}const shareBtn=document.getElementById("evMS");shareBtn.onclick=()=>shareText(ev.title,ev.title+"\n"+fd(ev.date)+" — "+ev.location+"\n"+ev.description+"\n\nGV/LV Committee, NETA 65");document.getElementById("evMC").onclick=()=>addToCal(ev.date,ev.title,ev.location,ev.description);document.getElementById("evModal").classList.add("open")}
+function closeModal(){document.getElementById("evModal").classList.remove("open")}
+
+// Add to Calendar — generates .ics file download
+function addToCal(date,title,location,desc){
+  const d=date.replace(/-/g,"");
+  const nd=new Date(date+"T00:00:00");nd.setDate(nd.getDate()+1);const de=nd.getFullYear()+String(nd.getMonth()+1).padStart(2,'0')+String(nd.getDate()).padStart(2,'0');
+  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//NETA65//GV-LV//EN","BEGIN:VEVENT",
+    "DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+de,
+    "SUMMARY:"+title,"LOCATION:"+location,
+    "DESCRIPTION:"+desc.replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n"),
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download=title.replace(/[^a-zA-Z0-9 ]/g,"").replace(/ +/g,"-").toLowerCase()+".ics";
+  a.click();URL.revokeObjectURL(a.href);
+}
+
+// PDF Viewer — embeds the file in an iframe modal
+//   • Drive/Docs URLs use Drive's native /preview endpoint (works for PDFs,
+//     Docs, Sheets, and Slides without any extra service)
+//   • All other URLs are wrapped with Google Docs Viewer (gview), which can
+//     embed any publicly-accessible PDF file
+function showPdf(url,title){
+  clearTimeout(_pdfCloseTimer);
+  document.getElementById("pdfMT").textContent=title||t("Document","Documento");
+  // "Open" button → Drive viewer page (or original URL); "Download" → direct download endpoint
+  const isDrive=!!driveFileId(url);
+  document.getElementById("pdfMO").href=isDrive?driveUrl(url,"view"):url;
+  document.getElementById("pdfMD").href=isDrive?driveUrl(url,"download"):url;
+  const body=document.getElementById("pdfMB");
+  const loader=document.getElementById("pdfLoader");
+  body.querySelectorAll("iframe").forEach(el=>el.remove());
+  loader.style.display="flex";
+  const viewerUrl=isDrive?driveUrl(url,"preview"):("https://docs.google.com/gview?url="+encodeURIComponent(url)+"&embedded=true");
+  const iframe=document.createElement("iframe");
+  iframe.src=viewerUrl;
+  iframe.title=title||t("Document","Documento");
+  iframe.className="w-full h-full border-none absolute inset-0";
+  iframe.setAttribute("allowfullscreen","true");
+  iframe.onload=function(){loader.style.display="none"};
+  setTimeout(()=>{loader.style.display="none"},6000);
+  body.appendChild(iframe);
+  document.getElementById("pdfModal").classList.add("open");
+}
+let _pdfCloseTimer=null;
+function closePdf(){
+  document.getElementById("pdfModal").classList.remove("open");
+  clearTimeout(_pdfCloseTimer);
+  _pdfCloseTimer=setTimeout(()=>{document.getElementById("pdfMB").querySelectorAll("iframe").forEach(el=>el.remove())},300);
+}
+
+// Gallery — featured carousel
+let si=0,galTimer=null,_featuredPhotos=[];
+function gm(d){if(!_featuredPhotos.length)return;si=(si+d+_featuredPhotos.length)%_featuredPhotos.length;gu();clearInterval(galTimer);startGal()}
+function gg(i){if(!_featuredPhotos.length)return;si=i;gu();clearInterval(galTimer);startGal()}
+function gu(){const gt=document.getElementById("gt");if(!gt||!_featuredPhotos.length)return;gt.style.transform=`translateX(-${si*100}%)`;document.querySelectorAll(".gal-dot-wrap").forEach((d,i)=>d.classList.toggle("active",i===si));const gc=document.getElementById("gc");if(gc)gc.textContent=si+1}
+function startGal(){clearInterval(galTimer);if(!_featuredPhotos.length)return;galTimer=setInterval(()=>{si=(si+1)%_featuredPhotos.length;gu()},5000)}
+function stopGal(){clearInterval(galTimer);galTimer=null}
+// Lightbox
+let _lbPhotos=[],_lbIdx=0;
+function openLb(photos,idx){_lbPhotos=photos;_lbIdx=idx;_lbRender();document.getElementById("lbOverlay").classList.add("open");document.body.style.overflow="hidden"}
+function closeLb(){document.getElementById("lbOverlay").classList.remove("open");document.body.style.overflow=""}
+function lbNav(d){if(!_lbPhotos.length)return;_lbIdx=(_lbIdx+d+_lbPhotos.length)%_lbPhotos.length;_lbRender()}
+function _lbRender(){const p=_lbPhotos[_lbIdx];if(!p)return;const img=document.getElementById("lbImg");const cap=document.getElementById("lbCap");const ctr=document.getElementById("lbCounter");img.src=driveUrl(fp("photos",p.filename),"image");const c=_lang==="es"&&p.caption_es?p.caption_es:p.caption;img.alt=c;cap.textContent=c;ctr.textContent=(_lbIdx+1)+" / "+_lbPhotos.length}
+// Delegated lightbox click handler — builds photo list from currently visible grid items
+document.addEventListener("click",function(e){const thumb=e.target.closest(".photo-thumb[data-lb-group]");if(!thumb)return;const idx=parseInt(thumb.dataset.lbIdx,10);const visible=[...document.querySelectorAll('#photoGrid .photo-thumb')].filter(x=>x.style.display!=='none');const photos=visible.map(el=>{const ci=parseInt(el.dataset.lbIdx,10);const allIdx=[...document.querySelectorAll('#photoGrid .photo-thumb')].indexOf(el);return BOOTH_PHOTOS[allIdx]}).filter(Boolean);openLb(photos,idx)})
+// Lightbox keyboard nav
+document.addEventListener("keydown",function(e){if(!document.getElementById("lbOverlay").classList.contains("open"))return;if(e.key==="ArrowRight")lbNav(1);else if(e.key==="ArrowLeft")lbNav(-1);else if(e.key==="Escape")closeLb()})
+// Photo category helper
+function _photoCategory(p){const c=p.caption||"";if(c.includes("Promotional")||c.startsWith("GV/LV —"))return"promo";if(c.includes("Published in Grapevine"))return"gv";if(c.includes("Published in La"))return"lv";return"event"}
+
+// Countdown
+let cdTimer;
+function startCountdown(){const el=document.getElementById("cd");if(!el)return;if(!MEETING_INFO.nextMeetingDate){el.innerHTML='';return}const tgt=new Date(MEETING_INFO.nextMeetingDate+"T19:00:00");if(isNaN(tgt.getTime())){el.innerHTML='';return}function upd(){let df=tgt-new Date();if(df<=0){el.innerHTML='<div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-3 rounded-xl border border-white/15 text-sm">'+t("Next meeting details coming soon","Detalles de la próxima reunión próximamente")+'</div>';return}const d=Math.floor(df/864e5);df%=864e5;const h=Math.floor(df/36e5);df%=36e5;const m=Math.floor(df/6e4);df%=6e4;const s=Math.floor(df/1e3);el.innerHTML=`<div class="text-[.68rem] uppercase tracking-widest opacity-70 font-semibold mb-2">${t("Next Meeting","Próxima Reunión")}</div><div class="inline-flex gap-3 bg-white/10 backdrop-blur-md px-5 py-3 rounded-xl border border-white/15"><div class="text-center min-w-[44px]"><span class="text-2xl font-extrabold block">${d}</span><span class="text-[.6rem] uppercase tracking-wider opacity-70 mt-1 block">${t("Days","Días")}</span></div><div class="text-center min-w-[44px]"><span class="text-2xl font-extrabold block">${h}</span><span class="text-[.6rem] uppercase tracking-wider opacity-70 mt-1 block">${t("Hours","Horas")}</span></div><div class="text-center min-w-[44px]"><span class="text-2xl font-extrabold block">${m}</span><span class="text-[.6rem] uppercase tracking-wider opacity-70 mt-1 block">Min</span></div><div class="text-center min-w-[44px]"><span class="text-2xl font-extrabold block">${String(s).padStart(2,'0')}</span><span class="text-[.6rem] uppercase tracking-wider opacity-70 mt-1 block">${t("Sec","Seg")}</span></div></div><div class="text-xs opacity-65 mt-2">${fd(MEETING_INFO.nextMeetingDate)} &middot; ${MEETING_INFO.time}</div>`}clearInterval(cdTimer);upd();cdTimer=setInterval(upd,1000)}
+
+// Timeline filter
+function filterTL(type,btn){btn.parentElement.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active','!bg-white','!text-brand-600','!shadow-sm','!font-semibold')});btn.classList.add('active','!bg-white','!text-brand-600','!shadow-sm','!font-semibold');document.querySelectorAll('#tlWrap .tl-row').forEach(item=>{const match=type==='all'||item.dataset.type===type;item.classList.toggle('hidden',!match);if(match)item.classList.add('visible')});document.querySelectorAll('#tlWrap .tl-decade').forEach(dec=>{let next=dec.nextElementSibling;let hasVisible=false;while(next&&!next.hasAttribute('data-decade')){if(next.classList.contains('tl-row')&&!next.classList.contains('hidden'))hasVisible=true;next=next.nextElementSibling}dec.classList.toggle('hidden',!hasVisible)})}
+
+// Show all announcements
+function showAllAnn(){const sec=document.querySelector("#pg-home .home-ann-wrap");let h=`<div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-megaphone"></i></div><h2 class="text-xl font-bold text-slate-900">${t("All Announcements","Todos los Anuncios")}</h2></div>`;RECENT_ANN.forEach(a=>{h+=annCard(a)});sec.innerHTML=h}
+function annCard(a){const aTitle=_lang==="es"&&a.title_es?a.title_es:a.title;const aBody=_lang==="es"&&a.body_es?a.body_es:a.body;const safeTitle=aTitle.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");const plainBody=aBody.replace(/<[^>]*>/g,'').replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");return `<div class="bg-white border border-slate-200 rounded-xl p-5 mb-3 relative pl-7 card-lift hover:border-brand-100 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-brand-600 before:rounded-l-xl"><div class="flex justify-between items-start flex-wrap gap-2"><div class="font-semibold text-slate-900">${aTitle}</div><span class="text-[.7rem] text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full inline-flex items-center gap-1"><i class="bi bi-clock"></i> ${rd(a.date)}</span></div><p class="text-sm text-slate-600 mt-1.5">${aBody}</p><button type="button" class="ann-share mt-2 inline-flex items-center gap-1 text-[.72rem] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors border-none cursor-pointer" data-share-title="${safeTitle}" data-share-body="${plainBody}"><i class="bi bi-share"></i> ${t("Share","Compartir")}</button></div>`}
+// Delegated click handler for announcement share buttons — safe from quote issues
+document.addEventListener("click",function(e){const btn=e.target.closest(".ann-share");if(!btn)return;const title=btn.dataset.shareTitle;const body=btn.dataset.shareBody;shareText(title,title+"\n"+body+"\n\nGV/LV Committee, NETA 65")})
+// Delegated click handler for script copy buttons — safe from quote/injection issues
+document.addEventListener("click",function(e){const btn=e.target.closest(".script-copy");if(!btn)return;copyText(btn.dataset.copy,btn)})
+// Delegated handlers for event cards — safe from quote escaping issues
+document.addEventListener("click",function(e){const share=e.target.closest(".ev-share");if(share){e.stopPropagation();const d=share.dataset;shareText(d.evtitle,d.evtitle+"\n"+fd(d.evdate)+" — "+d.evloc+"\n"+d.evdesc+"\n\nGV/LV Committee, NETA 65");return}const card=e.target.closest(".ev-card");if(!card)return;showEv(card.dataset.evdate,card.dataset.evtitle)})
+
+// ===== HOME PAGE =====
+function renderHome(){
+  const el=document.getElementById("pg-home");
+  const upcoming=EVENTS.filter(e=>isF(e.date)).sort((a,b)=>a.date.localeCompare(b.date));
+  const nextEv=upcoming[0];
+  const homeVids=[...YOUTUBE_VIDEOS].sort(()=>Math.random()-.5).slice(0,2);
+  const homeEps=[...PODCAST_EPISODES].sort(()=>Math.random()-.5).slice(0,3);
+  // Build runtime variable bags for HOME_QUICK_CARDS / HOME_BROWSE_CARDS placeholders
+  const nextEvLine=nextEv?(tx(nextEv,"title")+" — "+fd(nextEv.date)):t("No upcoming events","Sin eventos próximos");
+  const quickVars={
+    meeting:    { date:fd(MEETING_INFO.nextMeetingDate), time:MEETING_INFO.time, meetingId:MEETING_INFO.meetingId },
+    events:     { nextLine:nextEvLine, n:upcoming.length },
+    subscribe:  {},
+    contribute: {},
+  };
+  const browseVars={
+    about:     {},
+    gvr:       {},
+    documents: { r:REPORTS.length, n:MEETING_NOTES.length },
+    photos:    { p:BOOTH_PHOTOS.length },
+    media:     {},
+    resources: { n:RESOURCES.length },
+  };
+  // Render a card from a HOME_*_CARDS entry — tx() handles En/Es selection,
+  // fmt() substitutes runtime placeholders like {date}, {n}, etc.
+  function homeCard(c,vars){
+    return `<a href="#${c.id}" onclick="navigate('${c.id}');return false;" class="dash-card bg-white border border-slate-200 rounded-xl p-5 no-underline text-inherit flex flex-col card-lift hover:border-brand-100 group">
+      <div class="dash-card-icon w-11 h-11 rounded-lg flex items-center justify-center text-xl mb-3 ${c.bg}"><i class="bi ${c.icon}"></i></div>
+      <h3 class="text-[.95rem] font-bold text-slate-900 mb-1">${tx(c,"title")}</h3>
+      <p class="text-[.82rem] text-slate-500 leading-relaxed flex-1">${fmt(tx(c,"desc"),vars)}</p>
+      ${c.count?`<div class="text-[.7rem] font-semibold text-brand-600 mt-3 flex items-center gap-1"><i class="bi bi-arrow-right-short"></i> ${fmt(tx(c,"count"),vars)}</div>`:""}
+    </a>`;
+  }
+  // Home hero is structurally different from other pages (countdown + CTAs)
+  // so we can't use heroHtml() — but we still pull the title/sub from PAGE_HEROES
+  const hh=PAGE_HEROES.home;
+  let h=`<div class="bg-gradient-to-br from-slate-900 via-brand-700 to-brand-600 text-white pt-20 md:pt-24 pb-10 relative hero-mesh" id="homeHero">
+    <canvas id="grapevineCanvas" aria-hidden="true"></canvas>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f8fafc] to-transparent z-[2] pointer-events-none"></div>
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+      <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center">
+        <div class="text-center md:text-left">
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">${tx(hh,"title")}</h1>
+          <p class="opacity-60 text-sm md:text-base mt-3 max-w-lg md:max-w-none">${tx(hh,"sub")}</p>
+        </div>
+        <div class="text-center md:text-right">
+          <div class="flex flex-wrap gap-3 mb-4 justify-center md:justify-end">
+            <a href="#meeting" onclick="navigate('meeting');return false;" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-700 font-semibold rounded-xl text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all no-underline"><i class="bi bi-camera-video-fill"></i> ${t("Meeting Info","Info de Reunión")}</a>
+            <a href="#events" onclick="navigate('events');return false;" class="inline-flex items-center gap-2 px-5 py-2.5 border border-white/30 text-white font-semibold rounded-xl text-sm hover:bg-white/10 hover:-translate-y-0.5 transition-all no-underline"><i class="bi bi-calendar-event"></i> ${t("Events","Eventos")}</a>
+          </div>
+          <div id="cd"></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 stagger">`;
+  HOME_QUICK_CARDS.forEach(c=>{h+=homeCard(c,quickVars[c.id]||{})});
+  h+=`</div>`;
+  h+=`</div></div>`;
+  h+=`<div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">`;
+  // ── AA Preamble ──
+  h+=`<div class="mt-6 mb-2">
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 relative overflow-hidden card-lift hover:border-brand-100">
+      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-700 via-brand-500 to-brand-400"></div>
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-2xl shrink-0 mt-1"><i class="bi bi-bookmark-star-fill"></i></div>
+        <div class="flex-1">
+          <h2 class="text-lg font-extrabold text-slate-900 mb-2">${t("AA Preamble","Pre\u00E1mbulo de AA")}</h2>
+          <blockquote class="text-sm md:text-[.93rem] text-slate-700 leading-relaxed italic">\u201C${t(AA_PREAMBLE.en,AA_PREAMBLE.es)}\u201D</blockquote>
+          <p class="text-[.6rem] text-slate-400 mt-3 not-italic">${t(AA_PREAMBLE.copyright,AA_PREAMBLE.copyright_es)}</p>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  h+=`<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mt-4 stagger">`;
+  HOME_BROWSE_CARDS.forEach(c=>{h+=homeCard(c,browseVars[c.id]||{})});
+  h+=`</div>`;
+  if(RECENT_ANN.length>0){h+=`<div class="mt-10 home-ann-wrap"><div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-megaphone"></i></div><h2 class="text-xl font-bold text-slate-900">${t("Recent Announcements","Anuncios Recientes")}</h2></div>`;RECENT_ANN.slice(0,3).forEach(a=>{h+=annCard(a)});if(RECENT_ANN.length>3)h+=`<p class="text-center mt-3"><a href="#" onclick="showAllAnn();return false;" class="text-slate-500 text-sm hover:text-brand-600 transition-colors">${t("View all "+RECENT_ANN.length+" announcements","Ver los "+RECENT_ANN.length+" anuncios")}</a></p>`;h+=`</div>`}
+  h+=`<div class="mt-10"><div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-pink-50 text-pink-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-play-circle"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Listen &amp; Watch","Escuchar y Ver")}</h2><p class="text-sm text-slate-500">${t("Fresh picks from the AA Grapevine podcast and YouTube — refreshes each visit","Selecciones del podcast y YouTube de AA Grapevine — se actualizan en cada visita")}</p></div></div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">`;
+  homeEps.forEach(ep=>{h+=`<div class="bg-white border border-slate-200 rounded-xl overflow-hidden card-lift hover:border-brand-100"><iframe src="https://embed.podcasts.apple.com/us/podcast/${APPLE_SHOW_SLUG}/id${APPLE_SHOW_ID}?i=${ep.id}&theme=light" height="175" allow="autoplay *; encrypted-media *; clipboard-write" allowtransparency="true" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" loading="lazy" title="${ep.title}" class="w-full border-none"></iframe></div>`});
+  h+=`</div><div class="grid md:grid-cols-2 gap-4">`;
+  homeVids.forEach(v=>{h+=vidCard(v)});
+  h+=`</div>
+    <p class="text-center mt-4"><a href="#media" onclick="navigate('media');return false;" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition-colors no-underline"><i class="bi bi-play-circle"></i> ${t("Explore All Media","Explorar Todo el Contenido")}</a></p>
+  </div></div><div class="pb-12"></div>`;
+  el.innerHTML=h;startCountdown();GV_CANVAS.stop();GV_CANVAS.start()}
+
+// ===== ABOUT PAGE =====
+function renderAbout(){
+  let h=`
+    ${heroHtml("about",{milestones:TIMELINE.length})}
+    <div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div class="bg-gradient-to-br from-brand-600 to-brand-500 text-white rounded-2xl p-6 md:p-8 relative overflow-hidden mb-6">
+        <div class="absolute top-[-10px] left-4 text-[6rem] opacity-15 font-serif leading-none">&ldquo;</div>
+        <blockquote class="relative text-base md:text-lg italic leading-relaxed">${t("&quot;The Grapevine is our biggest and best means of communicating current AA thought and experience in staying sober, in hanging together, and in serving.&quot;","&quot;El Grapevine es nuestro medio más grande y mejor para comunicar el pensamiento y la experiencia actual de AA en mantenernos sobrios, en permanecer unidos y en servir.&quot;")}</blockquote>
+        <cite class="block mt-3 text-sm opacity-80 not-italic">— Bill W., <em>AA Comes of Age</em></cite>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+          <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-journal-richtext"></i></div>
+          <h4 class="font-bold text-slate-900 mb-2">${t("What is AA Grapevine?","¿Qué es AA Grapevine?")}</h4>
+          <p class="text-sm text-slate-600 mb-2">${t('The international journal of Alcoholics Anonymous, known as <strong>"our meeting in print."</strong> Published monthly since June 1944, it features first-person stories from AA members worldwide.','La revista internacional de Alcohólicos Anónimos, conocida como <strong>"nuestra reunión impresa."</strong> Publicada mensualmente desde junio de 1944, presenta historias en primera persona de miembros de AA en todo el mundo.')}</p>
+          <p class="text-sm text-slate-600">${t("Bill W. was its most prolific contributor with 150+ articles. The Twelve Traditions and the A.A. Preamble both originated in the Grapevine. Entirely self-supporting through subscriptions.","Bill W. fue su colaborador más prolífico con más de 150 artículos. Las Doce Tradiciones y el Preámbulo de A.A. se originaron en el Grapevine. Completamente autofinanciado mediante suscripciones.")}</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+          <div class="w-11 h-11 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-translate"></i></div>
+          <h4 class="font-bold text-slate-900 mb-2">${t("What is La Viña?","¿Qué es La Viña?")}</h4>
+          <p class="text-sm text-slate-600 mb-2">${t("A.A.'s bimonthly Spanish-language magazine, serving Spanish-speaking alcoholics since 1996. It carries the same spirit — personal stories, recovery insights, and AA news — in Spanish.","La revista bimestral en español de A.A., sirviendo a alcohólicos de habla hispana desde 1996. Lleva el mismo espíritu — historias personales, reflexiones de recuperación y noticias de AA — en español.")}</p>
+          <p class="text-sm text-slate-600">${t('Recognized by the General Service Conference in 2001 as a permanent service. Available digitally via the app (iOS &amp; Android) and at <a href="https://www.aalavina.org" target="_blank" rel="noopener" class="text-brand-600 hover:text-brand-700 underline">aalavina.org</a>.','Reconocida por la Conferencia de Servicios Generales en 2001 como un servicio permanente. Disponible digitalmente a través de la app (iOS y Android) y en <a href="https://www.aalavina.org" target="_blank" rel="noopener" class="text-brand-600 hover:text-brand-700 underline">aalavina.org</a>.')}</p>
+        </div>
+      </div>
+      <div class="bg-white border-2 border-brand-200 rounded-2xl p-6 md:p-8 mt-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-700 via-brand-500 to-brand-400"></div>
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-2xl shrink-0 mt-1"><i class="bi bi-bookmark-star-fill"></i></div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2 flex-wrap">
+              <h3 class="text-lg font-extrabold text-slate-900">${t("AA Preamble","Pre\u00E1mbulo de AA")}</h3>
+              <span class="text-[.6rem] font-semibold px-2 py-0.5 rounded-full bg-brand-50 text-brand-600 uppercase tracking-wider">${t("Born in the Grapevine \u2014 June 1947","Naci\u00F3 en el Grapevine \u2014 Junio 1947")}</span>
+            </div>
+            <blockquote class="text-sm md:text-[.93rem] text-slate-700 leading-relaxed italic">\u201C${t(AA_PREAMBLE.en,AA_PREAMBLE.es)}\u201D</blockquote>
+            <p class="text-[.6rem] text-slate-400 mt-3 not-italic">${t(AA_PREAMBLE.copyright,AA_PREAMBLE.copyright_es)}</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mt-6">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+          <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-diagram-3"></i></div>
+          <h4 class="font-bold text-slate-900 mb-2">${t("Grapevine in the AA Service Structure","Grapevine en la Estructura de Servicio de AA")}</h4>
+          <ul class="pl-5 text-sm text-slate-600 space-y-1">
+            <li>${t('<strong>AA Grapevine, Inc.</strong> is one of two operating corporations of the General Service Board','<strong>AA Grapevine, Inc.</strong> es una de las dos corporaciones operativas de la Junta de Servicios Generales')}</li>
+            <li>${t('The General Service Conference has a dedicated <strong>Conference Committee on Grapevine</strong>, formed in 1954','La Conferencia de Servicios Generales tiene un <strong>Comité de Conferencia sobre Grapevine</strong> dedicado, formado en 1954')}</li>
+            <li>${t('Grapevine is <strong>entirely self-supporting</strong> through subscriptions and merchandise','Grapevine se <strong>autofinancia completamente</strong> mediante suscripciones y mercancía')}</li>
+            <li>${t('Most Areas have a <strong>Grapevine/La Viña Committee</strong> as a standing committee','La mayoría de las Áreas tienen un <strong>Comité de Grapevine/La Viña</strong> como comité permanente')}</li>
+          </ul>
+        </div>
+        <div>
+          <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100 mb-3">
+            <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-mic"></i></div>
+            <h4 class="font-bold text-slate-900 mb-2">${t("Podcast, Apps &amp; Social","Podcast, Apps y Redes Sociales")}</h4>
+            <p class="text-sm text-slate-600"><strong>Podcast:</strong> ${t('"The AA Grapevine Half-Hour Variety Hour" — new episode every Monday, free on all platforms.','"The AA Grapevine Half-Hour Variety Hour" — episodio nuevo cada lunes, gratis en todas las plataformas.')}</p>
+            <p class="text-sm text-slate-600"><strong>${t("Weekly Open Meeting","Reunión Abierta Semanal")}:</strong> ${t("Live","En vivo")} ${WEEKLY_OPEN.day} ${t("at","a las")} ${WEEKLY_OPEN.time} ${t("on Zoom","por Zoom")} (ID: ${WEEKLY_OPEN.zoomId}, ${t("Passcode","Clave")}: ${WEEKLY_OPEN.passcode}).</p>
+            <p class="text-sm text-slate-600"><strong>Apps:</strong> Grapevine &amp; La Viña ${t("on","en")} iOS &amp; Android.</p>
+            <p class="text-sm text-slate-600 mb-3"><strong>${t("Social","Redes Sociales")}:</strong> ${t("YouTube audio stories &amp; ASL videos.","Historias en audio y videos ASL en YouTube.")} Instagram: <a href="${INSTAGRAM_GV_URL}" target="_blank" rel="noopener" class="text-brand-600 hover:text-brand-700">${INSTAGRAM_GV_HANDLE}</a> &amp; <a href="${INSTAGRAM_LV_URL}" target="_blank" rel="noopener" class="text-brand-600 hover:text-brand-700">${INSTAGRAM_LV_HANDLE}</a></p>
+            <div class="flex flex-wrap gap-2">
+              <a href="${PODCAST_WEB_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-medium transition-colors no-underline"><i class="bi bi-play-circle"></i> Podcast</a>
+              <a href="${WEEKLY_OPEN_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-medium transition-colors no-underline"><i class="bi bi-camera-video"></i> ${t("Weekly Open","Reunión Abierta")}</a>
+              <a href="${GV_APPS_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition-colors no-underline border border-slate-200"><i class="bi bi-phone"></i> Apps</a>
+              <a href="${GV_FOLLOW_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition-colors no-underline border border-slate-200"><i class="bi bi-arrow-up-right"></i> ${t("Follow","Seguir")}</a>
+            </div>
+          </div>
+          <div class="bg-white border-2 border-purple-200 rounded-xl p-6 mt-3 card-lift hover:border-purple-300">
+            <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-check2-square"></i></div>
+            <h4 class="font-bold text-slate-900 mb-2">${tx(TRADITIONS_CHECKLIST,"title")}</h4>
+            <p class="text-sm text-slate-600 mb-3">${tx(TRADITIONS_CHECKLIST,"description")}</p>
+            <div class="flex flex-col gap-2">
+              <a href="${TRADITIONS_CHECKLIST.en_url}" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors no-underline"><i class="bi bi-file-earmark-pdf"></i> ${t("Traditions Checklist (English)","Chequeo de Tradiciones (Ingl\u00E9s)")}</a>
+              <a href="${TRADITIONS_CHECKLIST.es_url}" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-medium transition-colors no-underline"><i class="bi bi-file-earmark-pdf"></i> ${t("Chequeo de las Tradiciones (Espa\u00F1ol)","Chequeo de las Tradiciones (Espa\u00F1ol)")}</a>
+            </div>
+            <p class="text-[.6rem] text-slate-400 mt-3">${tx(TRADITIONS_CHECKLIST,"copyright")}</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 mt-8 mb-5"><div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-emoji-laughing"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Humor &amp; Inspiration","Humor e Inspiración")}</h2><p class="text-sm text-slate-500">${t("Laughter is part of recovery — explore Grapevine's lighter side","La risa es parte de la recuperación — explora el lado más ligero del Grapevine")}</p></div></div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">`;
+ABOUT_PRODUCTS.forEach(p=>{h+=`<a href="${p.url}" target="_blank" rel="noopener" class="no-underline"><div class="bg-white border border-slate-200 rounded-xl p-5 text-center card-lift hover:border-brand-100"><div class="w-11 h-11 ${p.bg_color} rounded-lg flex items-center justify-center text-xl mb-3 mx-auto"><i class="bi ${p.icon}"></i></div><h4 class="font-bold text-slate-900 text-sm">${tx(p,"title")}</h4><p class="text-xs text-slate-500 mt-1">${tx(p,"description")}</p></div></a>`});
+h+=`</div>
+      <div id="aboutTimeline"></div>
+    </div></div>`;
+  document.getElementById("pg-about").innerHTML=h;
+  renderTimeline()}
+
+let _tlObs=null;
+function renderTimeline(){
+  if(_tlObs){try{_tlObs.disconnect()}catch(e){}_tlObs=null}
+  const el=document.getElementById("aboutTimeline");if(!el)return;
+  const icons={grapevine:"bi-journal-richtext",lavina:"bi-translate",both:"bi-globe2"};
+  function getDecade(y){const m=y.match(/\d{4}/);return m?Math.floor(parseInt(m[0])/10)*10+"s":null}
+  let h=`<div class="mt-8"><div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-clock-history"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("History of Grapevine &amp; La Viña","Historia de Grapevine y La Viña")}</h2><p class="text-sm text-slate-500">${t("80+ years of carrying the message — "+TIMELINE.length+" milestones from 1944 to today","Más de 80 años llevando el mensaje — "+TIMELINE.length+" hitos desde 1944 hasta hoy")}</p></div></div>
+    <div class="flex flex-wrap gap-1 bg-slate-100 rounded-lg p-1 mb-5 w-fit">
+      <button type="button" class="tab-btn active !bg-white !text-brand-600 !shadow-sm !font-semibold px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 transition-all hover:text-slate-900 cursor-pointer border-none bg-transparent" onclick="filterTL('all',this)">${t("All","Todos")} (${TIMELINE.length})</button>
+      <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 transition-all hover:text-slate-900 cursor-pointer border-none bg-transparent" onclick="filterTL('grapevine',this)"><span class="inline-block text-[.58rem] font-semibold px-1.5 py-px rounded-full bg-blue-50 text-blue-600">GV</span> Grapevine</button>
+      <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 transition-all hover:text-slate-900 cursor-pointer border-none bg-transparent" onclick="filterTL('lavina',this)"><span class="inline-block text-[.58rem] font-semibold px-1.5 py-px rounded-full bg-amber-50 text-amber-600">LV</span> La Viña</button>
+      <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 transition-all hover:text-slate-900 cursor-pointer border-none bg-transparent" onclick="filterTL('both',this)"><span class="inline-block text-[.58rem] font-semibold px-1.5 py-px rounded-full bg-purple-50 text-purple-600">&bull;</span> ${t("Joint","Conjunto")}</button>
+    </div>
+    <div class="relative max-w-3xl mx-auto" id="tlWrap">
+      <div class="tl-line tl-line-pos absolute left-1/2 top-0 bottom-0 w-[3px] rounded-full -translate-x-1/2"></div>`;
+  let side=0,lastDec="";
+  TIMELINE.forEach(item=>{
+    const cls=item.type==="lavina"?"lv":item.type==="both"?"both":"gv";
+    const icon=icons[item.type]||"bi-circle";
+    const badge=item.type==="lavina"?'<span class="inline-block text-[.58rem] font-semibold px-1.5 py-px rounded-full bg-amber-50 text-amber-600 ml-1 align-middle">La Viña</span>':item.type==="both"?'<span class="inline-block text-[.58rem] font-semibold px-1.5 py-px rounded-full bg-purple-50 text-purple-600 ml-1 align-middle">'+t("Joint","Conjunto")+'</span>':"";
+    const dec=getDecade(item.year);
+    if(dec&&dec!==lastDec){lastDec=dec;h+=`<div class="tl-decade tl-decade-ml text-center relative z-[2] my-6" data-decade><span class="inline-block bg-gradient-to-r from-slate-800 to-slate-700 text-white text-xs font-extrabold px-4 py-1.5 rounded-full tracking-wider shadow-md">${dec}</span></div>`}
+    const sideClass=side===0?"side-l":"side-r";
+    const yearColor=cls==="lv"?"text-amber-600":cls==="both"?"text-purple-600":"text-brand-600";
+    const nodeColor=cls==="lv"?"bg-amber-500":cls==="both"?"bg-gradient-to-br from-brand-600 to-amber-500":"bg-brand-600";
+    const topBar=cls==="lv"?"bg-amber-500":cls==="both"?"bg-gradient-to-r from-brand-600 to-amber-500":"bg-brand-600";
+    const tlTitle=_lang==="es"&&item.title_es?item.title_es:item.title;const tlDesc=_lang==="es"&&item.desc_es?item.desc_es:item.desc;const cardHtml=`<div class="bg-white border border-slate-200 rounded-xl p-4 card-lift hover:border-brand-100 relative overflow-hidden"><div class="absolute top-0 left-0 right-0 h-[3px] ${topBar}"></div><div class="text-[.68rem] font-bold uppercase tracking-wider mb-1 ${yearColor}">${item.year}</div><h6 class="text-sm font-bold text-slate-900 leading-snug mb-1">${tlTitle}${badge}</h6><p class="text-xs text-slate-600 leading-relaxed">${tlDesc}</p></div>`;
+    h+=`<div class="tl-row flex items-start mb-5 relative" style="flex-direction:row" data-type="${item.type}">
+      <div class="tl-left" style="width:calc(50% - 28px);${side===0?'text-align:right':'opacity:0;pointer-events:none'}">${side===0?cardHtml:""}</div>
+      <div class="tl-center" style="width:56px;display:flex;justify-content:center;flex-shrink:0;position:relative;z-index:2"><div class="tl-node-sz w-10 h-10 rounded-full flex items-center justify-center text-base text-white border-[3px] border-white shadow-md transition-transform hover:scale-110 ${nodeColor}"><i class="bi ${icon}"></i></div></div>
+      <div class="tl-right" style="width:calc(50% - 28px);${side===1?'text-align:left':'opacity:0;pointer-events:none'}">${side===1?cardHtml:""}</div>
+    </div>`;side=1-side});
+  h+=`</div></div>`;el.innerHTML=h;
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target)}})},{threshold:.15,rootMargin:"0px 0px -30px 0px"});_tlObs=obs;
+  document.querySelectorAll('.tl-row').forEach(r=>_tlObs.observe(r))}
+
+// ===== GVR CORNER PAGE =====
+function renderGVR(){
+  document.getElementById("pg-gvr").innerHTML=`
+    ${heroHtml("gvr")}
+    <div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10"><div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+          <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-person-badge"></i></div>
+          <h4 class="font-bold text-slate-900 mb-2">${t("What is a GVR?","¿Qué es un GVR?")}</h4>
+          <p class="text-sm text-slate-600 mb-2">${t('The <strong>Group Grapevine Representative (GVR)</strong> is the vital link between AA Grapevine, Inc. and your local AA group. You bring your homegroup the inspiration, personal stories, history, humor, and diverse opinion found in the Grapevine each month.','El <strong>Representante de Grapevine del Grupo (GVR)</strong> es el enlace vital entre AA Grapevine, Inc. y su grupo local de AA. Usted lleva a su grupo base la inspiración, historias personales, historia, humor y diversas opiniones que se encuentran en el Grapevine cada mes.')}</p>
+          <p class="text-sm text-slate-600">${t('The Spanish-language equivalent is the <strong>RLV (Representante de La Viña)</strong>.','El equivalente en español es el <strong>RLV (Representante de La Viña)</strong>.')}</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+          <h4 class="font-bold text-slate-900 mb-2"><i class="bi bi-check2-square text-brand-600"></i> ${t("GVR Responsibilities","Responsabilidades del GVR")}</h4>
+          <ul class="pl-5 text-sm text-slate-600 space-y-1">
+            <li>${t('Make sure current issues are <strong>displayed at meetings</strong>','Asegurar que las ediciones actuales estén <strong>exhibidas en las reuniones</strong>')}</li>
+            <li>${t('<strong>Promote each issue</strong> — let members know what\'s in the latest edition','<strong>Promover cada edición</strong> — informar a los miembros sobre el contenido más reciente')}</li>
+            <li>${t('<strong>Encourage subscriptions</strong> among group members','<strong>Fomentar suscripciones</strong> entre los miembros del grupo')}</li>
+            <li>${t('Encourage members to <strong>submit stories, art, and photos</strong>','Animar a los miembros a <strong>enviar historias, arte y fotos</strong>')}</li>
+            <li>${t('Suggest Grapevine for <strong>12th Step work</strong> — offer issues to newcomers','Sugerir el Grapevine para <strong>trabajo del 12o Paso</strong> — ofrecer ejemplares a los recién llegados')}</li>
+            <li>${t('Attend <strong>district and area</strong> Grapevine committee meetings','Asistir a las reuniones del comité de Grapevine del <strong>distrito y área</strong>')}</li>
+            <li>${t('Coordinate with district/area chairs for <strong>materials, displays, and ideas</strong>','Coordinarse con los presidentes de distrito/área para <strong>materiales, exhibiciones e ideas</strong>')}</li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+          <h4 class="font-bold text-slate-900 mb-2"><i class="bi bi-lightbulb text-brand-600"></i> ${t("Ideas for GVRs","Ideas para GVRs")}</h4>
+          <ul class="pl-5 text-sm text-slate-600 space-y-1">
+            <li>${t('Read a Grapevine story at your meeting as a <strong>discussion topic</strong>','Lee una historia del Grapevine en tu reunión como <strong>tema de discusión</strong>')}</li>
+            <li>${t('Set up a <strong>Grapevine display</strong> at group anniversaries and events','Monta una <strong>exhibición de Grapevine</strong> en aniversarios y eventos del grupo')}</li>
+            <li>${t('Organize a <strong>writing workshop</strong> to help members submit their stories','Organiza un <strong>taller de escritura</strong> para ayudar a los miembros a enviar sus historias')}</li>
+            <li>${t('Start a <strong>Carry the Message</strong> campaign — gift subscriptions for facilities','Inicia una campaña de <strong>Lleva el Mensaje</strong> — suscripciones de regalo para instituciones')}</li>
+            <li>${t('Share the <strong>free podcast</strong> link with your group','Comparte el enlace del <strong>podcast gratuito</strong> con tu grupo')}</li>
+            <li>${t('Create a <strong>subscription drive</strong> for your homegroup or district','Crea una <strong>campaña de suscripciones</strong> para tu grupo base o distrito')}</li>
+            <li>${t('Bring the <strong>Grapevine app</strong> to show members how easy digital access is','Muestra la <strong>app de Grapevine</strong> para que los miembros vean lo fácil que es el acceso digital')}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 text-center card-lift hover:border-brand-100">
+          <h4 class="font-bold text-slate-900 mb-1"><i class="bi bi-download"></i> ${t("GVR / RLV Handbooks","Manuales del GVR / RLV")}</h4>
+          <p class="text-slate-500 text-sm mb-3">${t("Essential guides for representatives","Guías esenciales para representantes")}</p>
+          <div class="space-y-2">
+            ${GVR_DOCUMENTS.filter(d=>d.tab==="handbook").map(d=>`<a href="${d.url}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium border border-slate-200 transition-colors no-underline"><i class="bi ${d.icon}"></i> ${tx(d,"title")}</a>`).join("\n            ")}
+          </div>
+        </div>
+        <div class="bg-gradient-to-br from-brand-600 to-brand-500 text-white rounded-xl p-6 text-center">
+          <div class="w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center text-xl mx-auto mb-3"><i class="bi bi-person-plus-fill"></i></div>
+          <h4 class="font-bold mb-1">${t("Register as a GVR / RLV","Regístrate como GVR / RLV")}</h4>
+          <p class="text-sm opacity-80 mb-3">${t("Newly elected? Register with AA Grapevine to start receiving materials and updates.","¿Recién elegido? Regístrate con AA Grapevine para empezar a recibir materiales y actualizaciones.")}</p>
+          <a href="${GVR_REGISTER_URL}" target="_blank" rel="noopener" class="block px-4 py-2.5 bg-white text-brand-700 font-semibold rounded-lg text-sm hover:bg-slate-100 transition-colors no-underline">${t("Register as GVR (English)","Registrarse como GVR (Inglés)")}</a>
+          <a href="${RLV_REGISTER_URL}" target="_blank" rel="noopener" class="block mt-2 px-4 py-2.5 bg-white/15 border border-white/30 text-white font-semibold rounded-lg text-sm hover:bg-white/25 transition-colors no-underline">${t("Register as RLV (Spanish)","Registrarse como RLV (Español)")}</a>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+          <h4 class="font-bold text-slate-900 mb-2 text-center"><i class="bi bi-gift"></i> ${t("Carry the Message","Lleva el Mensaje")}</h4>
+          <p class="text-sm text-slate-600 mb-3 text-left">${t("Sponsor Grapevine/La Viña subscriptions for alcoholics who can't afford them — in prisons, treatment centers, and beyond.","Patrocina suscripciones de Grapevine/La Viña para alcohólicos que no pueden pagarlas — en prisiones, centros de tratamiento y más.")}</p>
+          <div class="text-center"><a href="${CARRY_THE_MESSAGE_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors no-underline"><i class="bi bi-heart"></i> ${t("Learn More","Más Información")}</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- ── Posters, Postcards & Flyers ── -->
+    <div class="mt-8">
+      <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-pink-50 text-pink-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-card-image"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Posters, Postcards &amp; Flyers","Posters, Postales y Volantes")}</h2><p class="text-sm text-slate-500">${t("Print these for your booth, meetings, and displays — click to download PDF","Imprime estos para tu mesa, reuniones y exhibiciones — haz clic para descargar PDF")}</p></div></div>
+      <div class="flex flex-wrap gap-1 bg-slate-100 rounded-lg p-1 mb-5 w-fit">
+        <button type="button" class="tab-btn active !bg-white !text-brand-600 !shadow-sm !font-semibold px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all" onclick="sTab('gvr','gvpc',this)">${t("GV Postcards","Postales de GV")}</button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('gvr','lvpc',this)">${t("LV Postcards","Postales de LV")}</button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('gvr','gvtool',this)">${t("GV Tools &amp; Forms","Herramientas y Formularios de GV")}</button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('gvr','lvtool',this)">${t("LV Resources &amp; Forms","Recursos y Formularios de LV")}</button>
+      </div>
+      <!-- GV Postcards -->
+      <div class="tpanel active" id="gvr-gvpc"><div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        ${GVR_DOCUMENTS.filter(d=>d.tab==="gvpc").map(d=>gvrDocCard(d,"brand-100","bg-blue-50 text-blue-600")).join("\n        ")}
+      </div></div>
+      <!-- LV Tarjetas Postales -->
+      <div class="tpanel" id="gvr-lvpc" lang="es"><div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        ${GVR_DOCUMENTS.filter(d=>d.tab==="lvpc").map(d=>gvrDocCard(d,"amber-100","bg-amber-50 text-amber-600")).join("\n        ")}
+      </div></div>
+      <!-- GV Tools & Forms -->
+      <div class="tpanel" id="gvr-gvtool"><div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        ${GVR_DOCUMENTS.filter(d=>d.tab==="gvtool").map(d=>gvrDocCard(d,"brand-100","bg-green-50 text-green-600")).join("\n        ")}
+      </div></div>
+      <!-- LV Recursos & Formularios -->
+      <div class="tpanel" id="gvr-lvtool" lang="es"><div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        ${GVR_DOCUMENTS.filter(d=>d.tab==="lvtool").map(d=>gvrDocCard(d,"amber-100","bg-amber-50 text-amber-600")).join("\n        ")}
+      </div></div>
+    </div>
+    <!-- ── FAQ for GVRs ── -->
+    <div class="mt-8">
+      <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-sky-50 text-sky-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-question-circle"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Frequently Asked Questions","Preguntas Frecuentes")}</h2><p class="text-sm text-slate-500">${t("Common questions from new and experienced GVRs / RLVs","Preguntas comunes de GVRs / RLVs nuevos y experimentados")}</p></div></div>
+      <div class="space-y-2 max-w-4xl" id="gvrFaq"></div>
+    </div>
+    <!-- ── Sample Announcements ── -->
+    <div class="mt-8">
+      <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-megaphone"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Sample Announcements for Meetings","Anuncios de Ejemplo para Reuniones")}</h2><p class="text-sm text-slate-500">${t("Copy and read these at your homegroup — customize the [brackets]","Copia y lee estos en tu grupo base — personaliza los [corchetes]")}</p></div></div>
+      <div class="space-y-3 max-w-4xl" id="gvrScripts"></div>
+    </div>
+    </div></div>`
+  // FAQ data — driven from CSV
+  let faqHtml='';FAQ_DATA.forEach((f,i)=>{faqHtml+=`<details class="bg-white border border-slate-200 rounded-xl overflow-hidden card-lift hover:border-brand-100 group"><summary class="flex items-center gap-3 px-5 py-4 cursor-pointer select-none font-semibold text-slate-900 text-sm list-none [&::-webkit-details-marker]:hidden"><i class="bi bi-plus-circle text-brand-600 text-base shrink-0 group-open:hidden"></i><i class="bi bi-dash-circle text-brand-600 text-base shrink-0 hidden group-open:inline"></i> ${tx(f,"question")}</summary><div class="px-5 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">${tx(f,"answer")}</div></details>`});
+  document.getElementById("gvrFaq").innerHTML=faqHtml;
+  // Sample scripts — driven from CSV
+  let scriptHtml='';SCRIPTS_DATA.forEach(s=>{const langAttr=s.lang?` lang="${s.lang}"`:"";const sTitle=tx(s,"title");const sBody=tx(s,"body");const safeBody=sBody.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");scriptHtml+=`<div class="bg-white border border-slate-200 rounded-xl p-5 card-lift hover:border-brand-100"${langAttr}><div class="flex items-center gap-2 mb-3"><i class="bi ${s.icon} text-green-600"></i><h4 class="font-bold text-slate-900 text-sm">${sTitle}</h4></div><div class="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-700 leading-relaxed italic">"${sBody}"</div><button type="button" class="script-copy mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-brand-50 text-slate-600 hover:text-brand-600 rounded-lg text-xs font-semibold transition-colors border-none cursor-pointer" data-copy="${safeBody}"><i class="bi bi-clipboard"></i> ${t("Copy to Clipboard","Copiar al Portapapeles")}</button></div>`});
+  document.getElementById("gvrScripts").innerHTML=scriptHtml}
+
+// ===== SUBSCRIBE PAGE =====
+function renderSubscribe(){
+  // Renders one pricing card from a SUBSCRIPTION_TIERS entry.
+  // theme: "brand" (default), "amber", "brand-highlight", "amber-highlight"
+  function tierCard(tier){
+    const isHighlight=tier.theme==="brand-highlight"||tier.theme==="amber-highlight";
+    const isAmber=tier.theme==="amber"||tier.theme==="amber-highlight";
+    const borderCls=isHighlight?(isAmber?"border-amber-500":"border-brand-600"):"border-slate-200";
+    const priceCls=isAmber?"text-amber-600":"text-brand-600";
+    const checkCls=isAmber?"text-amber-600":"text-brand-600";
+    const ctaCls=isAmber?"bg-amber-500 hover:bg-amber-600":"bg-brand-600 hover:bg-brand-700";
+    const badgeCls=isAmber?"bg-amber-500 animate-pulse2":"bg-brand-600";
+    const badge=tx(tier,"badge");
+    const badgeHtml=badge?`<div class="absolute -top-px right-5 ${badgeCls} text-white text-[.65rem] font-bold px-3 py-1 rounded-b-lg uppercase tracking-wider">${badge}</div>`:"";
+    let featuresHtml="";
+    tier.features.forEach((f,i)=>{
+      const last=i===tier.features.length-1;
+      const iconHtml=f.ok?`<i class="bi bi-check-circle-fill ${checkCls} text-xs"></i>`:`<i class="bi bi-x-circle text-slate-300 text-xs"></i>`;
+      featuresHtml+=`<li class="flex items-center gap-2 ${last?"":"pb-2 border-b border-slate-100"}">${iconHtml} ${tx(f,"text")}</li>`;
+    });
+    // NOTE: Full class strings (including hover: prefix) must appear as
+    // literals in source so Tailwind's content scanner can detect them.
+    const hoverCls=isAmber?"hover:border-amber-400":"hover:border-brand-400";
+    return `<div class="bg-white border-2 ${borderCls} rounded-2xl p-6 text-center relative card-lift ${hoverCls}">
+      ${badgeHtml}
+      <h5 class="font-bold text-slate-900">${tx(tier,"name")}</h5>
+      <div class="text-3xl font-extrabold ${priceCls} mt-3 mb-1">${tier.price}</div>
+      <div class="text-xs text-slate-500">${tx(tier,"period")}</div>
+      <ul class="text-left text-sm text-slate-600 mt-4 space-y-2 list-none pl-0">${featuresHtml}</ul>
+      <a href="${tier.ctaUrl}" target="_blank" rel="noopener" class="block mt-4 px-4 py-2.5 ${ctaCls} text-white rounded-lg text-sm font-medium transition-colors no-underline">${tx(tier,"ctaLabel")}</a>
+    </div>`;
+  }
+  // Renders the section header (icon + name + tagline) above each tier group
+  function sectionHeader(s){
+    return `<div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 ${s.iconBg} rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi ${s.icon}"></i></div><div><h2 class="text-xl font-bold text-slate-900">${tx(s,"name")}</h2><p class="text-sm text-slate-500">${tx(s,"tagline")}</p></div></div>`;
+  }
+  // Renders the gift-subscription card from SUBSCRIPTION_GIFT
+  function giftCard(g){
+    let bullets="";g.bullets.forEach(b=>{bullets+=`<li>${tx(b,"text")}</li>`});
+    return `<div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-center card-lift hover:border-brand-100">
+      <h4 class="font-bold text-slate-900 mb-2"><i class="bi ${g.icon}"></i> ${tx(g,"title")}</h4>
+      <p class="text-sm text-slate-600 mb-2">${tx(g,"body")}</p>
+      <ul class="pl-5 text-sm text-slate-600 space-y-1 mb-3">${bullets}</ul>
+      <a href="${g.ctaUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors no-underline self-start"><i class="bi ${g.ctaIcon}"></i> ${tx(g,"ctaLabel")}</a>
+    </div>`;
+  }
+  // Group tiers by section so we can render GV first, then LV (with gift card appended)
+  const gvTiers=SUBSCRIPTION_TIERS.filter(tier=>tier.section==="gv");
+  const lvTiers=SUBSCRIPTION_TIERS.filter(tier=>tier.section==="lv");
+  // Support contact lines
+  let contactLines="";
+  SUPPORT_CONTACT.lines.forEach(l=>{contactLines+=`<span><strong>${tx(l,"label")}</strong> ${l.value}</span>`});
+  // Catalog buttons — pulled from RESOURCES so we don't duplicate URLs
+  const gvCatalog=RESOURCES.find(r=>r.title==="GV Catalog (PDF)");
+  const lvCatalog=RESOURCES.find(r=>r.title==="La Viña Catalog (PDF)");
+  const catalogBtns=[gvCatalog,lvCatalog].filter(Boolean).map(r=>`<a href="${r.url}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium border border-slate-200 transition-colors no-underline"><i class="bi ${r.icon}"></i> ${tx(r,"title")}</a>`).join("");
+  document.getElementById("pg-subscribe").innerHTML=`
+    ${heroHtml("subscribe")}
+    <div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">
+      ${sectionHeader(SUBSCRIPTION_SECTIONS.gv)}
+      <div class="grid md:grid-cols-3 gap-5 mb-8 max-w-5xl mx-auto">
+        ${gvTiers.map(tierCard).join("")}
+      </div>
+      ${sectionHeader(SUBSCRIPTION_SECTIONS.lv)}
+      <div class="grid md:grid-cols-3 gap-5 mb-6 max-w-5xl mx-auto">
+        ${lvTiers.map(tierCard).join("")}
+        ${giftCard(SUBSCRIPTION_GIFT)}
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5 text-center card-lift max-w-3xl mx-auto">
+        <p class="text-slate-500 text-sm mb-2">${tx(SUPPORT_CONTACT,"prompt")}</p>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm">${contactLines}</div>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3 mt-4">${catalogBtns}</div>
+    </div></div>`}
+
+// ===== CONTRIBUTE PAGE =====
+function renderContribute(){
+  let deadlines='';
+  const futureDeadlines=EDITORIAL_CALENDAR.filter(e=>e.deadline&&isF(e.deadline));
+  const noDeadline=EDITORIAL_CALENDAR.filter(e=>!e.deadline);
+  const pastDeadlines=EDITORIAL_CALENDAR.filter(e=>e.deadline&&!isF(e.deadline));
+  futureDeadlines.forEach(e=>{const tMo=tMonth(e.issueMonth);const mo=tMo.split(' ')[0];const yr=tMo.split(' ')[1];const eTopic=_lang==="es"&&e.topic_es?e.topic_es:e.topic;const daysLeft=Math.ceil((new Date(e.deadline+"T23:59:59")-new Date())/864e5);const urgent=daysLeft<=30;deadlines+=`<div class="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-4 mb-2 card-lift hover:border-brand-100"><div class="bg-brand-50 rounded-lg px-3 py-2 text-center shrink-0"><div class="text-sm font-bold text-brand-600">${mo}</div><div class="text-[.6rem] text-brand-600 font-medium">${yr}</div></div><div class="flex-1"><div class="font-semibold text-slate-900 text-sm">${eTopic}</div><div class="text-xs text-slate-500">${t("Deadline","Fecha límite")}: ${fd(e.deadline)}${urgent?' <span class="text-amber-600 font-semibold">('+(daysLeft<=0?t("Due now!","¡Vence ahora!"):daysLeft+" "+t("days left","días restantes"))+')</span>':''}</div></div></div>`});
+  noDeadline.forEach(e=>{const tMo=tMonth(e.issueMonth);const mo=tMo.split(' ')[0];const yr=tMo.split(' ')[1];const eTopic=_lang==="es"&&e.topic_es?e.topic_es:e.topic;deadlines+=`<div class="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-4 mb-2 opacity-70"><div class="bg-slate-100 rounded-lg px-3 py-2 text-center shrink-0"><div class="text-sm font-bold text-slate-500">${mo}</div><div class="text-[.6rem] text-slate-500 font-medium">${yr}</div></div><div class="flex-1"><div class="font-semibold text-slate-900 text-sm">${eTopic}</div><div class="text-xs text-slate-400">${t("Curated from archives — no submissions","Seleccionado del archivo — no se aceptan envíos")}</div></div></div>`});
+  if(pastDeadlines.length)deadlines+=`<p class="text-xs text-slate-400 mt-2">${pastDeadlines.length} ${t("past deadline"+(pastDeadlines.length>1?"s":"")+" hidden","fecha"+(pastDeadlines.length>1?"s":"")+" límite pasada"+(pastDeadlines.length>1?"s":"")+" oculta"+(pastDeadlines.length>1?"s":""))}</p>`;
+  // Render the "What You Can Submit" cards from SUBMISSION_TYPES
+  function submissionTypeCard(s){
+    const note=tx(s,"note");
+    return `<div class="bg-white border border-slate-200 rounded-xl p-5 card-lift hover:border-brand-100">
+      <h4 class="font-bold text-slate-900 mb-2"><i class="bi ${s.icon}"></i> ${tx(s,"title")}</h4>
+      <p class="text-sm text-slate-600 ${note?"mb-1":""}">${tx(s,"body")}</p>
+      ${note?`<p class="text-xs text-slate-500">${note}</p>`:""}
+    </div>`;
+  }
+  // Render a submission-channel block (GV or LV) from SUBMIT_CHANNELS
+  function channelBlock(ch){
+    const isAmber=ch.theme==="amber";
+    const numCls=isAmber?"bg-amber-500":"bg-brand-600";
+    const linkCls=isAmber?"text-amber-600 hover:text-amber-700":"text-brand-600 hover:text-brand-700";
+    const headIconBg=isAmber?"bg-amber-50 text-amber-600":"bg-brand-50 text-brand-600";
+    const wrapCls=isAmber?"bg-white border-2 border-amber-200 rounded-xl p-5 card-lift hover:border-amber-300 space-y-3":"bg-white border border-slate-200 rounded-xl p-5 card-lift hover:border-brand-100 space-y-3";
+    let itemsHtml="";
+    ch.items.forEach(it=>{
+      const valueHtml=it.url?`<a href="${it.url}" target="_blank" rel="noopener" class="${linkCls}">${it.text}</a>`:it.text;
+      itemsHtml+=`<div class="flex items-start gap-3"><div class="w-8 h-8 ${numCls} text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">${it.num}</div><div><strong>${tx(it,"label")}</strong><br>${valueHtml}</div></div>`;
+    });
+    const intro=tx(ch,"intro");
+    const introHtml=intro?`<p class="text-sm text-slate-600">${intro}</p>`:"";
+    const extra=ch.extraCta;
+    const extraHtml=extra?`<a href="${extra.url}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-medium transition-colors no-underline mt-1"><i class="bi ${extra.icon}"></i> ${tx(extra,"label")}</a>`:"";
+    return `<div class="flex items-center gap-3 mt-8 mb-5"><div class="w-10 h-10 ${headIconBg} rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi ${ch.headingIcon}"></i></div><h2 class="text-xl font-bold text-slate-900">${tx(ch,"heading")}</h2></div>
+      <div class="${wrapCls}">
+        ${introHtml}
+        ${itemsHtml}
+        <p class="text-xs text-slate-500 mt-3"><i class="bi bi-info-circle"></i> ${tx(ch,"footer")}</p>
+        ${extraHtml}
+      </div>`;
+  }
+  document.getElementById("pg-contribute").innerHTML=`
+    ${heroHtml("contribute")}
+    <div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div class="bg-gradient-to-br from-brand-600 to-brand-500 text-white rounded-2xl p-6 md:p-8 relative overflow-hidden mb-6">
+        <div class="absolute top-[-10px] left-4 text-[6rem] opacity-15 font-serif leading-none">&ldquo;</div>
+        <blockquote class="relative text-base md:text-lg italic leading-relaxed">${t("Every AA member has a story worth sharing. You don't need to be a writer — just be honest about your experience. Your story could be the one that helps someone stay sober today.","Cada miembro de AA tiene una historia que vale la pena compartir. No necesitas ser escritor — solo sé honesto sobre tu experiencia. Tu historia podría ser la que ayude a alguien a mantenerse sobrio hoy.")}</blockquote>
+        <cite class="block mt-3 text-sm opacity-80 not-italic">${t("— From the AA Grapevine submission guidelines","— De las pautas de envío de AA Grapevine")}</cite>
+      </div>
+      <div class="grid lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-4">
+          <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-pencil"></i></div><h2 class="text-xl font-bold text-slate-900">${t("What You Can Submit","Qué Puedes Enviar")}</h2></div>
+          ${SUBMISSION_TYPES.map(submissionTypeCard).join("")}
+          ${channelBlock(SUBMIT_CHANNELS.gv)}
+          ${channelBlock(SUBMIT_CHANNELS.lv)}
+        </div>
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-calendar-range"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Editorial Calendar","Calendario Editorial")}</h2><p class="text-sm text-slate-500">${t("Upcoming topics &amp; deadlines","Próximos temas y fechas límite")}</p></div></div>
+          ${deadlines}
+          <a href="${GV_CONTRIBUTE_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors no-underline mt-3"><i class="bi bi-calendar-range"></i> ${t("Full Calendar at aagrapevine.org","Calendario completo en aagrapevine.org")}</a>
+          <div class="bg-white border border-slate-200 rounded-xl p-6 mt-4 text-center card-lift hover:border-brand-100">
+            <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-xl mb-3 mx-auto"><i class="bi bi-book"></i></div>
+            <h4 class="font-bold text-slate-900 mb-2">${t("Submission Guidelines","Pautas de Envío")}</h4>
+            <p class="text-sm text-slate-600 mb-3">${t("Read the full guidelines before submitting.","Lee las pautas completas antes de enviar.")}</p>
+            <a href="${GV_GUIDELINES_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium border border-slate-200 transition-colors no-underline"><i class="bi bi-arrow-up-right"></i> ${t("Read Guidelines","Leer Pautas")}</a>
+          </div>
+        </div>
+      </div>
+    </div></div>`}
+
+// ===== MEETING PAGE =====
+function renderMeeting(){
+  const m=MEETING_INFO;
+  document.getElementById("pg-meeting").innerHTML=`
+    ${heroHtml("meeting")}
+    <div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10"><div class="max-w-5xl mx-auto"><div class="grid md:grid-cols-2 gap-5">
+      <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+        <h5 class="font-bold text-slate-900 flex items-center gap-2 mb-4"><i class="bi bi-clock-fill text-brand-600"></i> ${t("Schedule","Horario")}</h5>
+        <div class="flex items-start gap-3 mb-3"><div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-sm shrink-0 mt-0.5"><i class="bi bi-calendar-check"></i></div><div class="text-sm"><span class="text-xs font-semibold uppercase tracking-wide text-slate-500 block">${t("When","Cuándo")}</span>${_lang==="es"&&m.schedule_es?m.schedule_es:m.schedule}<br>${m.time}</div></div>
+        <div class="flex items-start gap-3 mb-3"><div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-sm shrink-0 mt-0.5"><i class="bi bi-calendar-event"></i></div><div class="text-sm"><span class="text-xs font-semibold uppercase tracking-wide text-slate-500 block">${t("Next Meeting","Próxima Reunión")}</span>${fd(m.nextMeetingDate)}</div></div>
+        <div class="flex items-start gap-3 mb-3"><div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-sm shrink-0 mt-0.5"><i class="bi bi-person-badge"></i></div><div class="text-sm"><span class="text-xs font-semibold uppercase tracking-wide text-slate-500 block">${t("Chair","Presidente")}</span>${_lang==="es"&&m.chair_es?m.chair_es:m.chair}<br><a href="mailto:${m.chairEmail}" class="text-brand-600 hover:text-brand-700">${m.chairEmail}</a></div></div>
+        <p class="text-sm text-slate-500 mt-3"><i class="bi bi-info-circle"></i> ${_lang==="es"&&m.additionalNotes_es?m.additionalNotes_es:m.additionalNotes}</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
+        <h5 class="font-bold text-slate-900 flex items-center gap-2 mb-4"><i class="bi bi-camera-video-fill text-brand-600"></i> ${t("Join on Zoom","Unirse por Zoom")}</h5>
+        <div class="text-center py-3"><span class="inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-4 py-1.5 rounded-full text-sm font-semibold"><i class="bi bi-camera-video-fill"></i> ${t("Zoom Meeting","Reunión por Zoom")}</span></div>
+        <div class="flex items-center gap-3 mb-3"><div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="bi bi-hash"></i></div><div class="text-sm flex-1"><span class="text-xs font-semibold uppercase tracking-wide text-slate-500 block">${t("Meeting ID","ID de Reunión")}</span><span class="text-base font-bold tracking-wider">${m.meetingId}</span></div><button type="button" onclick="copyText('${m.meetingId}',this)" class="text-xs px-2.5 py-1 border border-slate-200 rounded-lg text-slate-500 hover:text-brand-600 hover:border-brand-200 transition-all bg-white cursor-pointer shrink-0"><i class="bi bi-clipboard"></i> ${t("Copy","Copiar")}</button></div>
+        <div class="flex items-center gap-3 mb-3"><div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="bi bi-key"></i></div><div class="text-sm flex-1"><span class="text-xs font-semibold uppercase tracking-wide text-slate-500 block">${t("Passcode","Clave")}</span><span class="text-base font-bold tracking-wider">${m.passcode}</span></div><button type="button" onclick="copyText('${m.passcode}',this)" class="text-xs px-2.5 py-1 border border-slate-200 rounded-lg text-slate-500 hover:text-brand-600 hover:border-brand-200 transition-all bg-white cursor-pointer shrink-0"><i class="bi bi-clipboard"></i> ${t("Copy","Copiar")}</button></div>
+        <div class="flex flex-col sm:flex-row gap-2 mt-5 justify-center"><a href="${m.zoomLink}" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white rounded-lg font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg no-underline"><i class="bi bi-box-arrow-up-right"></i> ${t("Join Meeting","Unirse a la Reunión")}</a><button type="button" onclick="copyText('GV/LV Committee Meeting\\nZoom ID: ${m.meetingId}\\nPasscode: ${m.passcode}\\n${m.schedule}, ${m.time}\\nJoin: ${m.zoomLink}',this)" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 rounded-lg font-medium text-sm transition-all cursor-pointer"><i class="bi bi-copy"></i> ${t("Copy All Info","Copiar Toda la Info")}</button></div>
+      </div>
+    </div></div></div></div>`}
+
+// ===== EVENTS PAGE =====
+function renderEvents(){
+  const up=EVENTS.filter(e=>isF(e.date)).sort((a,b)=>a.date.localeCompare(b.date));
+  const pa=EVENTS.filter(e=>!isF(e.date)).sort((a,b)=>b.date.localeCompare(a.date));
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
+  function evc(e){const eTitle=_lang==="es"&&e.title_es?e.title_es:e.title;const eDesc=_lang==="es"&&e.description_es?e.description_es:e.description;const fl=e.flyerFile?`<a href="${fp("flyers",e.flyerFile)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 bg-red-50 text-red-700 text-[.72rem] font-semibold px-2 py-0.5 rounded-full hover:bg-red-100 transition-colors no-underline" onclick="event.stopPropagation()"><i class="bi bi-file-earmark-pdf-fill"></i> ${t("Flyer","Volante")}</a>`:"";return `<div class="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-4 mb-2 card-lift hover:border-brand-100 cursor-pointer ev-card" data-evdate="${e.date}" data-evtitle="${esc(e.title)}" role="button" tabindex="0" onkeydown="if(event.key==='Enter')this.click()"><div class="bg-gradient-to-br from-brand-600 to-brand-500 text-white rounded-lg px-3 py-2 text-center min-w-[52px] shrink-0"><div class="text-[.58rem] uppercase tracking-wider font-semibold">${sm(e.date)}</div><div class="text-xl font-extrabold leading-none">${dn(e.date)}</div></div><div class="flex-1 min-w-0"><div class="font-semibold text-slate-900">${eTitle}</div><div class="text-xs text-slate-500 flex flex-wrap gap-2 mt-1"><span><i class="bi bi-geo-alt-fill"></i> ${e.location}</span><span><i class="bi bi-calendar3"></i> ${fd(e.date)}</span></div><p class="text-sm text-slate-700 mt-1">${eDesc}</p><div class="flex flex-wrap items-center gap-2 mt-2">${fl}<button type="button" class="ev-share inline-flex items-center gap-1 text-[.72rem] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors border-none cursor-pointer" data-evdate="${e.date}" data-evtitle="${esc(e.title)}" data-evloc="${esc(e.location)}" data-evdesc="${esc(eDesc)}"><i class="bi bi-share"></i> ${t("Share","Compartir")}</button></div></div></div>`}
+  let h=`${heroHtml("events",{up:up.length,pa:pa.length})}<div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10"><div class="max-w-4xl mx-auto">
+    <div class="flex flex-wrap gap-1 bg-slate-100 rounded-lg p-1 mb-5 w-fit"><button type="button" class="tab-btn active !bg-white !text-brand-600 !shadow-sm !font-semibold px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all" onclick="sTab('ev','up',this)">${t("Upcoming","Próximos")} (${up.length})</button><button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('ev','pa',this)">${t("Past","Pasados")} (${pa.length})</button></div>
+    <div class="tpanel active" id="ev-up">`;
+  if(!up.length)h+='<p class="text-slate-500 text-sm">'+t("No upcoming events.","No hay eventos próximos.")+'</p>';else up.forEach(e=>{h+=evc(e)});
+  h+=`</div><div class="tpanel" id="ev-pa">`;
+  if(!pa.length)h+='<p class="text-slate-500 text-sm">'+t("No past events.","No hay eventos pasados.")+'</p>';else pa.forEach(e=>{h+=evc(e)});
+  h+='</div></div></div></div>';document.getElementById("pg-events").innerHTML=h}
+
+// ===== DOCUMENTS PAGE =====
+function renderDocuments(){
+  let h=`${heroHtml("documents")}<div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10"><div class="max-w-4xl mx-auto">`;
+  const hasDriveDocs=GOOGLE_DRIVE.reports||GOOGLE_DRIVE.notes||GOOGLE_DRIVE.slides;
+  if(hasDriveDocs){h+=`<div class="flex flex-wrap gap-2 mb-5">`;if(GOOGLE_DRIVE.reports)h+=`<a href="${GOOGLE_DRIVE.reports}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm font-medium border border-blue-200 transition-colors no-underline"><i class="bi bi-google"></i> ${t("Reports on Drive","Informes en Drive")}</a>`;if(GOOGLE_DRIVE.notes)h+=`<a href="${GOOGLE_DRIVE.notes}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm font-medium border border-blue-200 transition-colors no-underline"><i class="bi bi-google"></i> ${t("Notes on Drive","Minutas en Drive")}</a>`;if(GOOGLE_DRIVE.slides)h+=`<a href="${GOOGLE_DRIVE.slides}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm font-medium border border-blue-200 transition-colors no-underline"><i class="bi bi-google"></i> ${t("Slides on Drive","Diapositivas en Drive")}</a>`;h+=`</div>`}
+  if(MEETING_NOTES.length>0){const l=MEETING_NOTES[0];h+=`<div class="bg-gradient-to-br from-brand-600 to-brand-500 text-white rounded-2xl p-6 mb-5 relative overflow-hidden"><div class="absolute top-[-30%] right-[-10%] w-56 h-56 bg-white/[.08] rounded-full"></div><div class="relative"><div class="flex justify-between items-start flex-wrap gap-2"><div><div class="text-[.68rem] uppercase tracking-widest opacity-70 mb-1">${t("Latest Meeting Notes","Últimas Minutas de Reunión")}</div><h5 class="font-bold text-lg">${tMonth(l.month)}</h5></div><span class="text-xs opacity-80"><i class="bi bi-calendar3"></i> ${fd(l.date)}</span></div><p class="text-sm opacity-90 mt-2 mb-3">${l.summary}</p><a href="${fp("notes",l.filename)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-1.5 bg-white text-brand-700 rounded-lg text-sm font-medium no-underline hover:bg-slate-100 transition-colors"><i class="bi bi-file-earmark-pdf-fill"></i> ${t("Download","Descargar")}</a></div></div>`}
+  h+=`<div class="flex flex-wrap gap-1 bg-slate-100 rounded-lg p-1 mb-5 w-fit"><button type="button" class="tab-btn active !bg-white !text-brand-600 !shadow-sm !font-semibold px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all" onclick="sTab('dc','rp',this)">${t("Reports","Informes")} (${REPORTS.length})</button><button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('dc','nt',this)">${t("Notes","Minutas")} (${MEETING_NOTES.length})</button><button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('dc','sl',this)">${t("Slides","Presentaciones")} (${MEETING_SLIDES.length})</button></div>`;
+  function docRow(href,icon,iconBg,name,sub){return `<a href="${href}" target="_blank" rel="noopener" class="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3 mb-1.5 card-lift hover:border-brand-100 hover:translate-x-1 no-underline text-inherit"><div class="w-9 h-9 ${iconBg} rounded-lg flex items-center justify-center text-base shrink-0"><i class="bi ${icon}"></i></div><div class="flex-1 min-w-0"><div class="font-semibold text-slate-900 text-sm">${name}</div><div class="text-xs text-slate-500 truncate">${sub}</div></div><div class="text-brand-600 text-sm shrink-0"><i class="bi bi-download"></i></div></a>`}
+  h+='<div class="tpanel active" id="dc-rp">';REPORTS.forEach(r=>{h+=docRow(fp("reports",r.filename),"bi-file-earmark-pdf-fill","bg-red-50 text-red-600",tMonth(r.month),t("Monthly Report","Informe Mensual"))});if(!REPORTS.length)h+='<p class="text-sm text-slate-500">'+t("No reports yet.","Aún no hay informes.")+'</p>';
+  h+='</div><div class="tpanel" id="dc-nt">';MEETING_NOTES.forEach(n=>{h+=docRow(fp("notes",n.filename),"bi-file-earmark-pdf-fill","bg-red-50 text-red-600",tMonth(n.month),n.summary)});if(!MEETING_NOTES.length)h+='<p class="text-sm text-slate-500">'+t("No notes yet.","Aún no hay minutas.")+'</p>';
+  h+='</div><div class="tpanel" id="dc-sl">';MEETING_SLIDES.forEach(s=>{h+=docRow(fp("slides",s.filename),"bi-file-earmark-slides-fill","bg-blue-50 text-blue-600",tMonth(s.month),t("Meeting Slides","Presentación de Reunión"))});if(!MEETING_SLIDES.length)h+='<p class="text-sm text-slate-500">'+t("No slides yet.","Aún no hay presentaciones.")+'</p>';
+  h+='</div></div></div></div>';document.getElementById("pg-documents").innerHTML=h}
+
+// ===== PHOTOS PAGE =====
+function renderPhotos(){
+  si=0;
+  const cats=[
+    {id:"all",   label:t("All","Todas"),                        icon:"bi-grid-3x3-gap", count:BOOTH_PHOTOS.length},
+    {id:"event", label:t("Booth & Events","Mesa y Eventos"),    icon:"bi-calendar-event",count:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="event").length},
+    {id:"gv",    label:t("Published in GV","Publicados en GV"), icon:"bi-journal-richtext",count:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="gv").length},
+    {id:"lv",    label:t("Published in LV","Publicados en LV"), icon:"bi-translate",    count:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="lv").length},
+    {id:"promo", label:t("Promotional","Promocional"),          icon:"bi-megaphone",    count:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="promo").length},
+  ].filter(c=>c.count>0);
+  let h=`${heroHtml("photos",{count:BOOTH_PHOTOS.length})}<div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">`;
+  if(GOOGLE_DRIVE.photos){h+=`<div class="mb-6 text-center"><a href="${GOOGLE_DRIVE.photos}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm font-medium border border-blue-200 transition-colors no-underline"><i class="bi bi-google"></i> ${t("View All Photos on Google Drive","Ver Todas las Fotos en Google Drive")}</a></div>`}
+  if(!BOOTH_PHOTOS.length){h+='<p class="text-sm text-slate-500">'+t("No photos yet.","Aún no hay fotos.")+'</p></div></div>';document.getElementById("pg-photos").innerHTML=h;return}
+  // ── Stats row ──
+  h+=`<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 max-w-3xl mx-auto">`;
+  const statItems=[
+    {n:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="event").length,l:t("Event Photos","Fotos de Eventos"),ic:"bi-camera",bg:"bg-pink-50 text-pink-600"},
+    {n:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="gv").length,l:t("GV Authors","Autores GV"),ic:"bi-journal-richtext",bg:"bg-blue-50 text-blue-600"},
+    {n:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="lv").length,l:t("LV Authors","Autores LV"),ic:"bi-translate",bg:"bg-amber-50 text-amber-600"},
+    {n:BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="promo").length,l:t("Promotional","Promocional"),ic:"bi-megaphone",bg:"bg-green-50 text-green-600"},
+  ];
+  statItems.forEach(s=>{h+=`<div class="bg-white border border-slate-200 rounded-xl p-4 text-center card-lift hover:border-brand-100"><div class="w-9 h-9 ${s.bg} rounded-lg flex items-center justify-center text-base mx-auto mb-2"><i class="bi ${s.ic}"></i></div><div class="text-2xl font-extrabold text-slate-900">${s.n}</div><div class="text-[.68rem] text-slate-500 font-medium">${s.l}</div></div>`});
+  h+=`</div>`;
+  // ── Featured carousel (top 8 event photos by largest file — best quality) ──
+  _featuredPhotos=BOOTH_PHOTOS.filter(p=>_photoCategory(p)==="event").slice(0,8);
+  if(_featuredPhotos.length){
+    h+=`<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-pink-50 text-pink-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-star"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Featured Photos","Fotos Destacadas")}</h2><p class="text-sm text-slate-500">${t("Highlights from our booths, workshops, and events","Lo mejor de nuestras mesas, talleres y eventos")}</p></div></div>`;
+    h+=`<div class="relative rounded-2xl overflow-hidden bg-slate-900 max-w-5xl mx-auto mb-2" id="gal">
+      <div class="absolute top-3 right-3 bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-semibold z-[2]"><span id="gc">1</span> / ${_featuredPhotos.length}</div>
+      <div class="gal-track flex" id="gt">`;
+    _featuredPhotos.forEach(p=>{const cap=tx(p,"caption");const safeCap=cap.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");const imgSrc=driveUrl(fp("photos",p.filename),"image");h+=`<div class="min-w-full aspect-video relative"><img src="${imgSrc}" alt="${safeCap}" loading="lazy" class="w-full h-full object-cover" onerror="if(!this.dataset.errored){this.dataset.errored='1';this.src='https://placehold.co/900x506/1e293b/94a3b8?text=${encodeURIComponent(cap)}'}"><div class="absolute bottom-0 w-full px-5 pb-4 pt-10 bg-gradient-to-t from-black/70 to-transparent text-white text-sm font-medium">${cap}</div></div>`});
+    h+=`</div>
+      <button type="button" class="absolute top-1/2 left-2 sm:left-3 -translate-y-1/2 bg-white/15 backdrop-blur-md text-white border border-white/20 w-11 h-11 rounded-full text-lg cursor-pointer z-[2] flex items-center justify-center hover:bg-white/30 transition-all" onclick="gm(-1)" aria-label="${t("Previous","Anterior")}"><i class="bi bi-chevron-left"></i></button>
+      <button type="button" class="absolute top-1/2 right-2 sm:right-3 -translate-y-1/2 bg-white/15 backdrop-blur-md text-white border border-white/20 w-11 h-11 rounded-full text-lg cursor-pointer z-[2] flex items-center justify-center hover:bg-white/30 transition-all" onclick="gm(1)" aria-label="${t("Next","Siguiente")}"><i class="bi bi-chevron-right"></i></button>
+    </div>
+    <div class="flex justify-center gap-1 py-3" id="gd">`;
+    _featuredPhotos.forEach((_,i)=>{h+=`<button type="button" class="gal-dot-wrap ${i===0?'active':''}" onclick="gg(${i})" aria-label="${t("Photo","Foto")} ${i+1}"><span class="gal-dot"></span></button>`});
+    h+=`</div>`;
+  }
+  // ── Category filter tabs ──
+  h+=`<div class="flex items-center gap-3 mt-8 mb-4"><div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-lg shrink-0"><i class="bi bi-grid-3x3-gap"></i></div><div><h2 class="text-xl font-bold text-slate-900">${t("Browse All Photos","Explorar Todas las Fotos")}</h2><p class="text-sm text-slate-500">${t("Click any photo to view full size","Haz clic en cualquier foto para ver a tamaño completo")}</p></div></div>`;
+  h+=`<div class="flex flex-wrap gap-1 bg-slate-100 rounded-lg p-1 mb-5 w-fit">`;
+  cats.forEach((c,i)=>{const active=i===0?"active !bg-white !text-brand-600 !shadow-sm !font-semibold":"";h+=`<button type="button" class="tab-btn ${active} px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="filterPhotos('${c.id}',this)"><i class="bi ${c.icon}"></i> ${c.label} <span class="text-slate-400">(${c.count})</span></button>`});
+  h+=`</div>`;
+  // ── Photo grid ──
+  const catColors={event:"bg-pink-500 text-white",gv:"bg-blue-500 text-white",lv:"bg-amber-500 text-white",promo:"bg-green-500 text-white"};
+  const catLabels={event:"Event",gv:"GV",lv:"LV",promo:"Promo"};
+  h+=`<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3" id="photoGrid">`;
+  BOOTH_PHOTOS.forEach((p,i)=>{
+    const cat=_photoCategory(p);
+    const cap=tx(p,"caption");
+    const safeCap=cap.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+    const imgSrc=driveUrl(fp("photos",p.filename),"image");
+    const badge=catColors[cat]||"bg-slate-500 text-white";
+    h+=`<div class="photo-thumb" data-cat="${cat}" data-lb-group="all" data-lb-idx="${i}" role="button" tabindex="0" aria-label="${safeCap}" onkeydown="if(event.key==='Enter')this.click()">
+      <span class="photo-cat-badge ${badge}">${catLabels[cat]||cat}</span>
+      <img src="${imgSrc}" alt="${safeCap}" loading="lazy" onerror="if(!this.dataset.errored){this.dataset.errored='1';this.style.display='none'}">
+      <div class="photo-overlay"><span>${cap}</span></div>
+      <i class="bi bi-arrows-fullscreen photo-zoom"></i>
+    </div>`;
+  });
+  h+=`</div></div></div>`;
+  document.getElementById("pg-photos").innerHTML=h;
+  // Touch swipe support for featured carousel
+  const tk=document.getElementById("gt");
+  if(tk){let touchStartX=0;
+    tk.addEventListener("touchstart",e=>{touchStartX=e.touches[0].clientX},{passive:true});
+    tk.addEventListener("touchend",e=>{const d=touchStartX-e.changedTouches[0].clientX;if(Math.abs(d)>50)gm(d>0?1:-1)},{passive:true});
+  }
+  startGal()}
+// Photo grid filter
+function filterPhotos(cat,btn){
+  btn.parentElement.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active','!bg-white','!text-brand-600','!shadow-sm','!font-semibold')});
+  btn.classList.add('active','!bg-white','!text-brand-600','!shadow-sm','!font-semibold');
+  document.querySelectorAll('#photoGrid .photo-thumb').forEach(el=>{
+    const match=cat==='all'||el.dataset.cat===cat;
+    el.style.display=match?'':'none';
+  });
+  // Update lightbox indices once after all visibility is set
+  const visible=[...document.querySelectorAll('#photoGrid .photo-thumb')].filter(x=>x.style.display!=='none');
+  visible.forEach((x,i)=>{x.dataset.lbGroup=cat;x.dataset.lbIdx=i});
+}
+
+// ===== MEDIA PAGE =====
+function renderMedia(){
+  const rVids=[...YOUTUBE_VIDEOS].sort(()=>Math.random()-.5);
+  const rEps=[...PODCAST_EPISODES].sort(()=>Math.random()-.5);
+  let h=`${heroHtml("media")}
+  <div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">
+    <div class="flex flex-wrap gap-1 bg-slate-100 rounded-lg p-1 mb-5 w-fit">
+      <button type="button" class="tab-btn active !bg-white !text-brand-600 !shadow-sm !font-semibold px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all" onclick="sTab('med','pod',this)"><i class="bi bi-mic"></i> Podcast</button>
+      <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('med','vid',this)"><i class="bi bi-youtube"></i> ${t("Videos","Videos")}</button>
+      <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 border-none bg-transparent cursor-pointer transition-all hover:text-slate-900" onclick="sTab('med','ig',this)"><i class="bi bi-instagram"></i> Instagram</button>
+    </div>
+    <div class="tpanel active" id="med-pod">
+      <div class="grid lg:grid-cols-5 gap-4 mb-4">
+        <div class="lg:col-span-2"><div class="rounded-xl overflow-hidden bg-slate-900"><iframe src="https://embed.podcasts.apple.com/us/podcast/${APPLE_SHOW_SLUG}/id${APPLE_SHOW_ID}?theme=light" height="450" allow="autoplay *; encrypted-media *; clipboard-write" allowtransparency="true" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" loading="lazy" title="AA Grapevine Podcast" class="w-full border-none"></iframe></div></div>
+        <div class="lg:col-span-3">
+          <p class="text-sm text-slate-600"><strong>"The AA Grapevine Half-Hour Variety Hour"</strong> — ${t("hosted by Don, Olis, and Sam. New episode every Monday, free on all platforms.","conducido por Don, Olis y Sam. Episodio nuevo cada lunes, gratis en todas las plataformas.")}</p>
+          <p class="text-sm text-slate-600 mt-2"><strong>${t("GV Weekly Open Meeting","Reunión Abierta Semanal de GV")}</strong> — ${t("Live","En vivo")} ${WEEKLY_OPEN.day} ${t("at","a las")} ${WEEKLY_OPEN.time} ${t("on Zoom","por Zoom")} (ID: ${WEEKLY_OPEN.zoomId}, ${t("Passcode","Clave")}: ${WEEKLY_OPEN.passcode}). <a href="${WEEKLY_OPEN_URL}" target="_blank" rel="noopener" class="text-brand-600 hover:text-brand-700 underline">${t("Recordings &amp; details","Grabaciones y detalles")}</a></p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <a href="${SPOTIFY_SHOW_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 text-slate-700 hover:border-brand-600 hover:text-brand-600 hover:bg-brand-50 transition-all no-underline"><i class="bi bi-spotify"></i> Spotify</a>
+            <a href="${APPLE_PODCAST_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 text-slate-700 hover:border-brand-600 hover:text-brand-600 hover:bg-brand-50 transition-all no-underline"><i class="bi bi-apple"></i> Apple Podcasts</a>
+            <a href="${AMAZON_PODCAST_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 text-slate-700 hover:border-brand-600 hover:text-brand-600 hover:bg-brand-50 transition-all no-underline"><i class="bi bi-amazon"></i> Amazon</a>
+            <a href="${PODCAST_WEB_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-slate-200 text-slate-700 hover:border-brand-600 hover:text-brand-600 hover:bg-brand-50 transition-all no-underline"><i class="bi bi-globe2"></i> Web</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">`;
+  rEps.slice(0,8).forEach(ep=>{h+=`<div class="bg-white border border-slate-200 rounded-xl overflow-hidden card-lift hover:border-brand-100"><iframe src="https://embed.podcasts.apple.com/us/podcast/${APPLE_SHOW_SLUG}/id${APPLE_SHOW_ID}?i=${ep.id}&theme=light" height="175" allow="autoplay *; encrypted-media *; clipboard-write" allowtransparency="true" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" loading="lazy" title="${ep.title}" class="w-full border-none"></iframe></div>`});
+  h+=`</div></div>
+    <div class="tpanel" id="med-vid"><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">`;
+  rVids.slice(0,12).forEach(v=>{h+=vidCard(v)});
+  h+=`</div>`;
+  if(rVids.length>12){h+=`<div class="text-center mt-4"><button type="button" id="loadMoreVids" onclick="document.getElementById('moreVids').style.display='grid';this.style.display='none'" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-semibold transition-colors border-none cursor-pointer"><i class="bi bi-plus-circle"></i> ${t("Show More Videos","Mostrar Más Videos")} (${rVids.length-12} ${t("more","más")})</button></div><div id="moreVids" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4" style="display:none">`; rVids.slice(12).forEach(v=>{h+=vidCard(v)});h+=`</div>`}
+  h+=`<div class="text-center mt-4"><a href="${YOUTUBE_CHANNEL_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium border border-slate-200 transition-colors no-underline"><i class="bi bi-youtube"></i> ${t("AA Grapevine YouTube Channel","Canal de YouTube de AA Grapevine")}</a></div></div>
+    <div class="tpanel" id="med-ig"><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">`;
+  [...INSTAGRAM_POSTS].sort(()=>Math.random()-.5).slice(0,6).forEach(code=>{h+=`<div class="bg-white border border-slate-200 rounded-xl overflow-hidden card-lift hover:border-brand-100"><iframe src="https://www.instagram.com/p/${code}/embed" loading="lazy" title="Instagram post" class="w-full border-none min-h-[420px] sm:min-h-[600px]"></iframe></div>`});
+  h+=`</div><div class="flex flex-wrap justify-center gap-3 mt-4"><a href="${INSTAGRAM_GV_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium border border-slate-200 transition-colors no-underline"><i class="bi bi-instagram"></i> ${t("Follow","Seguir")} ${INSTAGRAM_GV_HANDLE}</a><a href="${INSTAGRAM_LV_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-lg text-sm font-medium border border-amber-200 transition-colors no-underline"><i class="bi bi-instagram"></i> ${t("Follow","Seguir")} ${INSTAGRAM_LV_HANDLE}</a></div></div>
+  </div></div>`;document.getElementById("pg-media").innerHTML=h}
+
+// ===== RESOURCES PAGE =====
+function renderResources(){
+  const groups=[
+    {id:"sites",label:t("Grapevine & La Viña","Grapevine y La Viña"),icon:"bi-journal-richtext",color:"bg-blue-50 text-blue-600"},
+    {id:"digital",label:t("Digital Tools & Apps","Herramientas Digitales y Apps"),icon:"bi-phone",color:"bg-green-50 text-green-600"},
+    {id:"involve",label:t("Get Involved","Participa"),icon:"bi-pencil-square",color:"bg-amber-50 text-amber-600"},
+    {id:"gvr",label:t("GVR / RLV Tools","Herramientas del GVR / RLV"),icon:"bi-person-badge",color:"bg-purple-50 text-purple-600"},
+    {id:"listen",label:t("Listen & Follow","Escuchar y Seguir"),icon:"bi-play-circle",color:"bg-pink-50 text-pink-600"},
+    {id:"aa",label:"AA & NETA 65",icon:"bi-globe",color:"bg-sky-50 text-sky-600"},
+  ];
+  let h=`${heroHtml("resources",{count:RESOURCES.length})}<div class="py-8 md:py-12"><div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10">`;
+  groups.forEach(g=>{
+    const items=RESOURCES.filter(r=>r.cat===g.id);
+    if(!items.length)return;
+    h+=`<div class="mb-8"><div class="flex items-center gap-2.5 mb-3"><div class="w-9 h-9 ${g.color} rounded-lg flex items-center justify-center text-base shrink-0"><i class="bi ${g.icon}"></i></div><h3 class="text-base font-bold text-slate-900">${g.label}</h3></div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">`;
+    items.forEach(r=>{
+      h+=`<a href="${r.url}" target="_blank" rel="noopener" class="flex items-start gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3.5 no-underline text-inherit card-lift hover:border-brand-100 group">
+        <div class="w-9 h-9 ${g.color} rounded-lg flex items-center justify-center text-base shrink-0 mt-0.5 transition-transform group-hover:scale-110"><i class="bi ${r.icon}"></i></div>
+        <div class="flex-1 min-w-0"><h6 class="text-sm font-semibold text-slate-900 m-0">${_lang==="es"&&r.title_es?r.title_es:r.title}</h6><p class="text-[.72rem] text-slate-500 mt-0.5 leading-snug m-0">${_lang==="es"&&r.description_es?r.description_es:r.description}</p></div>
+        <i class="bi bi-box-arrow-up-right text-slate-300 text-xs shrink-0 mt-1 transition-all group-hover:text-brand-600 group-hover:translate-x-0.5"></i></a>`});
+    h+=`</div></div>`});
+  h+=`</div></div>`;document.getElementById("pg-resources").innerHTML=h}
+
+// ===== LANGUAGE TOGGLE =====
+// Static element translations (header/footer — not re-rendered by renderAll)
+const I18N={
+  hdr_brand:{en:"Grapevine / La Viña",es:"Grapevine / La Viña"},
+  hdr_sub:{en:"NETA 65 Committee",es:"Comité NETA 65"},
+  hdr_contact:{en:"Contact",es:"Contacto"},
+  ftr_title:{en:"Grapevine / La Viña Committee",es:"Comité Grapevine / La Viña"},
+  ftr_area:{en:"Northeast Texas Area 65 of Alcoholics Anonymous",es:"Área 65 del Noreste de Texas de Alcohólicos Anónimos"},
+  ftr_copy:{en:"NETA 65 Grapevine / La Viña Committee. Not affiliated with AA World Services.",es:"Comité Grapevine / La Viña NETA 65. No afiliado con AA World Services."},
+};
+
+function applyLang(){
+  const l=_lang;
+  document.documentElement.lang=l==="es"?"es":"en";
+  // Toggle button
+  const lb=document.getElementById("langBtn");
+  lb.textContent=l==="en"?"ES":"EN";
+  lb.title=l==="en"?"Cambiar a Español":"Switch to English";
+  lb.setAttribute("aria-label",l==="en"?"Cambiar idioma":"Switch language");
+  // Header brand (static HTML, not re-rendered)
+  const bt=document.querySelector(".hdr-brand-title");if(bt)bt.textContent=I18N.hdr_brand[l];
+  const bs=document.querySelector(".hdr-brand-sub");if(bs)bs.textContent=I18N.hdr_sub[l];
+  // Header contact link
+  const hct=document.getElementById("hdrContactTxt");if(hct)hct.textContent=I18N.hdr_contact[l];
+  // Footer contact link
+  const fct=document.getElementById("ftrContactTxt");if(fct)fct.textContent=I18N.hdr_contact[l];
+  // Header menu button aria-label
+  const menuBtn=document.querySelector("[onclick='toggleSidebar()']");if(menuBtn)menuBtn.setAttribute("aria-label",l==="es"?"Abrir menú":"Open menu");
+  // Sidebar close button aria-label
+  const sideClose=document.querySelector("[onclick='closeSidebar()']");if(sideClose)sideClose.setAttribute("aria-label",l==="es"?"Cerrar":"Close");
+  // Event modal buttons
+  const evMSL=document.getElementById("evMSL");if(evMSL)evMSL.textContent=l==="es"?"Compartir":"Share";
+  const evMCL=document.getElementById("evMCL");if(evMCL)evMCL.textContent=l==="es"?"Calendario":"Calendar";
+  const evMFL=document.getElementById("evMFL");if(evMFL)evMFL.textContent=l==="es"?"Ver Volante":"View Flyer";
+  const evMCl=document.getElementById("evMClose");if(evMCl)evMCl.textContent=l==="es"?"Cerrar":"Close";
+  // Event modal close button aria-label
+  const evClose=document.querySelector("#evModal [aria-label]");if(evClose)evClose.setAttribute("aria-label",l==="es"?"Cerrar":"Close");
+  // PDF modal buttons
+  const pdfOL=document.getElementById("pdfMOL");if(pdfOL)pdfOL.textContent=l==="es"?"Abrir":"Open";
+  const pdfDL=document.getElementById("pdfMDL");if(pdfDL)pdfDL.textContent=l==="es"?"Descargar":"Download";
+  const pdfLT=document.getElementById("pdfLoaderTxt");if(pdfLT)pdfLT.textContent=l==="es"?"Cargando documento...":"Loading document...";
+  // PDF modal close button aria-label
+  const pdfClose=document.querySelector("#pdfModal [aria-label]");if(pdfClose)pdfClose.setAttribute("aria-label",l==="es"?"Cerrar":"Close");
+  // Back to top button
+  const bttEl=document.getElementById("btt");if(bttEl){bttEl.title=l==="es"?"Volver arriba":"Back to top";bttEl.setAttribute("aria-label",l==="es"?"Volver arriba":"Back to top")}
+  // Skip to content link
+  const skipLink=document.querySelector("a[href='#pageContainer']");if(skipLink)skipLink.textContent=l==="es"?"Saltar al contenido":"Skip to content";
+  // Footer (static HTML)
+  const ft=document.querySelector("footer .font-bold.text-white.text-lg");
+  if(ft)ft.textContent=I18N.ftr_title[l];
+  const fp2=ft?ft.nextElementSibling:null;if(fp2)fp2.textContent=I18N.ftr_area[l];
+  const fc=document.querySelector("footer .text-xs.text-slate-500");
+  if(fc)fc.innerHTML="&copy; "+new Date().getFullYear()+" "+I18N.ftr_copy[l];
+  // Footer schedule
+  document.getElementById("footerSchedule").textContent=t("We meet every 3rd Wednesday \u2022 "+MEETING_INFO.time+" \u2022 via "+MEETING_INFO.platform,"Nos reunimos cada 3er Mi\u00E9rcoles \u2022 "+MEETING_INFO.time+" \u2022 por "+MEETING_INFO.platform);
+  // Sidebar menu title
+  const sb=document.querySelector(".sidebar-panel h6");if(sb)sb.textContent=l==="en"?"Menu":"Menú";
+}
+function toggleLang(){
+  _lang=_lang==="en"?"es":"en";
+  try{localStorage.setItem("gv_lang",_lang)}catch(e){}
+  renderAll();
+}
+
+// ===== INIT =====
+document.getElementById("yr").textContent=new Date().getFullYear();
+document.getElementById("footerSchedule").textContent=t("We meet every 3rd Wednesday \u2022 "+MEETING_INFO.time+" \u2022 via "+MEETING_INFO.platform,"Nos reunimos cada 3er Mi\u00E9rcoles \u2022 "+MEETING_INFO.time+" \u2022 por "+MEETING_INFO.platform);
+const btt=document.getElementById("btt");
+function updateHeader(){const hdr=document.getElementById("hdr");if(window.scrollY<=60){hdr.classList.add("hdr-transparent");hdr.classList.remove("hdr-solid","shadow-lg")}else{hdr.classList.remove("hdr-transparent");hdr.classList.add("hdr-solid");hdr.classList.toggle("shadow-lg",window.scrollY>10)}}
+window.addEventListener("scroll",()=>{btt.classList.toggle("visible",window.scrollY>400);updateHeader()});
+btt.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSidebar();closeModal();closePdf();closeLb()}});
+// Intercept document link clicks on GVR and Documents pages — open inline viewer
+// instead of external tab. Handles local PDFs, images, AND Google Drive URLs.
+// Uses delegated handler on document so it survives innerHTML rebuilds (language toggle)
+document.addEventListener("click",function(e){
+  const link=e.target.closest("#pg-gvr a[href], #pg-documents a[href]");
+  if(!link)return;
+  const href=link.getAttribute("href");
+  if(!href||href==="#")return;
+  const isPdf=/\.(pdf|PDF)(\?.*)?$/.test(href);
+  const isImg=/\.(jpe?g|JPE?G|png|PNG)(\?.*)?$/.test(href);
+  const isDrive=!!driveFileId(href)&&/drive\.google\.com|docs\.google\.com/.test(href);
+  if(isPdf||isImg||isDrive){
+    e.preventDefault();
+    const h6=link.querySelector("h6");const title=(h6?h6.textContent:"")||link.textContent.trim()||t("Document","Documento");
+    showPdf(href,title);
+  }
+});
+// Load CSV data, then render all pages
+loadAllCSV().then(()=>{
+  renderNav();renderHome();renderAbout();renderGVR();renderSubscribe();renderContribute();renderMeeting();renderEvents();renderDocuments();renderPhotos();renderMedia();renderResources();handleHash();updateHeader();applyLang();
+}).catch(err=>{
+  console.error("CSV load failed, rendering with defaults:",err);
+  buildEvents();buildRecentAnn();
+  renderNav();renderHome();renderAbout();renderGVR();renderSubscribe();renderContribute();renderMeeting();renderEvents();renderDocuments();renderPhotos();renderMedia();renderResources();handleHash();updateHeader();applyLang();
+});
+</script>
+</body>
+</html>
