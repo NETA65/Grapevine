@@ -304,7 +304,7 @@ let GV_APPS_URL = "";
 let GV_FOLLOW_URL = "";
 let GV_CONTRIBUTE_URL = "";
 let GV_GUIDELINES_URL = "";
-let GIFT_CTA_URL = "";
+let P52_PAMPHLET_URL = "";
 // Meeting info & Weekly Open — defaults overwritten from data/config.csv
 let MEETING_INFO = {
   schedule:"", schedule_es:"", time:"", platform:"Zoom", zoomLink:"",
@@ -527,7 +527,7 @@ function applyConfig(cfg){
   if(v("gv_follow_url"))GV_FOLLOW_URL=v("gv_follow_url");
   if(v("gv_contribute_url"))GV_CONTRIBUTE_URL=v("gv_contribute_url");
   if(v("gv_guidelines_url"))GV_GUIDELINES_URL=v("gv_guidelines_url");
-  if(v("gift_cta_url"))GIFT_CTA_URL=v("gift_cta_url");
+  if(v("p52_pamphlet_url"))P52_PAMPHLET_URL=v("p52_pamphlet_url");
   if(v("submit_gv_online_url"))SUBMIT_CHANNELS.gv.items[0].url=v("submit_gv_online_url");
   if(v("submit_gv_online_text"))SUBMIT_CHANNELS.gv.items[0].text=v("submit_gv_online_text");
   if(v("submit_gv_email")){SUBMIT_CHANNELS.gv.items[1].text=v("submit_gv_email");SUBMIT_CHANNELS.gv.items[1].url="mailto:"+v("submit_gv_email")}
@@ -536,7 +536,7 @@ function applyConfig(cfg){
   if(v("submit_lv_online_text"))SUBMIT_CHANNELS.lv.items[0].text=v("submit_lv_online_text");
   if(v("submit_lv_email")){SUBMIT_CHANNELS.lv.items[1].text=v("submit_lv_email");SUBMIT_CHANNELS.lv.items[1].url="mailto:"+v("submit_lv_email")}
   if(v("submit_lv_mail"))SUBMIT_CHANNELS.lv.items[2].text=v("submit_lv_mail");
-  if(v("gift_cta_url"))SUBSCRIPTION_GIFT.ctaUrl=v("gift_cta_url");
+  if(v("carry_the_message_url"))SUBSCRIPTION_GIFT.ctaUrl=v("carry_the_message_url");
   if(v("gift_title")){SUBSCRIPTION_GIFT.title=v("gift_title");SUBSCRIPTION_GIFT.title_es=es("gift_title")||v("gift_title")}
   if(v("gift_body")){SUBSCRIPTION_GIFT.body=v("gift_body");SUBSCRIPTION_GIFT.body_es=es("gift_body")||v("gift_body")}
   if(v("gift_cta_label")){SUBSCRIPTION_GIFT.ctaLabel=v("gift_cta_label");SUBSCRIPTION_GIFT.ctaLabel_es=es("gift_cta_label")||v("gift_cta_label")}
@@ -1418,18 +1418,31 @@ function renderAbout(){
         </div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mt-6">
-        <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100">
-          <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-diagram-3"></i></div>
-          <h4 class="font-bold text-slate-900 mb-2">${t("Grapevine in the AA Service Structure","Grapevine en la Estructura de Servicio de AA")}</h4>
-          <ul class="pl-5 text-sm text-slate-600 space-y-1">
-            <li>${t('<strong>AA Grapevine, Inc.</strong> is one of two operating corporations of the General Service Board','<strong>AA Grapevine, Inc.</strong> es una de las dos corporaciones operativas de la Junta de Servicios Generales')}</li>
-            <li>${t('The General Service Conference has a dedicated <strong>Conference Committee on Grapevine</strong>, formed in 1954','La Conferencia de Servicios Generales tiene un <strong>Comité de Conferencia sobre Grapevine</strong> dedicado, formado en 1954')}</li>
-            <li>${t('Grapevine is <strong>entirely self-supporting</strong> through subscriptions and merchandise','Grapevine se <strong>autofinancia completamente</strong> mediante suscripciones y mercancía')}</li>
-            <li>${t('Most Areas have a <strong>Grapevine/La Viña Committee</strong> as a standing committee','La mayoría de las Áreas tienen un <strong>Comité de Grapevine/La Viña</strong> como comité permanente')}</li>
-          </ul>
+        <div class="flex flex-col gap-3">
+          <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100 flex-1">
+            <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-diagram-3"></i></div>
+            <h4 class="font-bold text-slate-900 mb-2">${t("Grapevine in the AA Service Structure","Grapevine en la Estructura de Servicio de AA")}</h4>
+            <ul class="pl-5 text-sm text-slate-600 space-y-1">
+              <li>${t('<strong>AA Grapevine, Inc.</strong> is one of two operating corporations of the General Service Board','<strong>AA Grapevine, Inc.</strong> es una de las dos corporaciones operativas de la Junta de Servicios Generales')}</li>
+              <li>${t('The General Service Conference has a dedicated <strong>Conference Committee on Grapevine</strong>, formed in 1954','La Conferencia de Servicios Generales tiene un <strong>Comité de Conferencia sobre Grapevine</strong> dedicado, formado en 1954')}</li>
+              <li>${t('Grapevine is <strong>entirely self-supporting</strong> through subscriptions and merchandise','Grapevine se <strong>autofinancia completamente</strong> mediante suscripciones y mercancía')}</li>
+              <li>${t('Most Areas have a <strong>Grapevine/La Viña Committee</strong> as a standing committee','La mayoría de las Áreas tienen un <strong>Comité de Grapevine/La Viña</strong> como comité permanente')}</li>
+            </ul>
+          </div>
+          <div class="bg-white border-2 border-brand-200 rounded-xl p-6 card-lift hover:border-brand-300 flex-1">
+            <div class="w-11 h-11 bg-brand-50 text-brand-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-journal-richtext"></i></div>
+            <h4 class="font-bold text-slate-900 mb-2">${t("About AA Grapevine &amp; La Viña","Acerca de AA Grapevine y La Viña")}</h4>
+            <p class="text-sm text-slate-600 mb-2">${t("AA Grapevine and La Viña are the international journals of Alcoholics Anonymous. Published by AA Grapevine, Inc., they share stories of experience, strength, and hope from AA members around the world.","AA Grapevine y La Viña son las revistas internacionales de Alcohólicos Anónimos. Publicadas por AA Grapevine, Inc., comparten historias de experiencia, fortaleza y esperanza de miembros de AA en todo el mundo.")}</p>
+            <ul class="pl-5 text-sm text-slate-600 space-y-1 mb-3">
+              <li>${t('<strong>AA Grapevine</strong> — monthly magazine in English, published since June 1944','<strong>AA Grapevine</strong> — revista mensual en inglés, publicada desde junio de 1944')}</li>
+              <li>${t('<strong>La Viña</strong> — bimonthly magazine in Spanish, published since June 1996','<strong>La Viña</strong> — revista bimestral en español, publicada desde junio de 1996')}</li>
+              <li>${t('Available in print, digital, audio, and via mobile apps','Disponible en formato impreso, digital, audio y a través de aplicaciones móviles')}</li>
+            </ul>
+            <a href="${P52_PAMPHLET_URL}" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-sm font-medium transition-colors no-underline w-full"><i class="bi bi-file-earmark-pdf"></i> ${t("AA Grapevine — P-52 Pamphlet","AA Grapevine — Folleto P-52")}</a>
+          </div>
         </div>
-        <div>
-          <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100 mb-3">
+        <div class="flex flex-col gap-3">
+          <div class="bg-white border border-slate-200 rounded-xl p-6 card-lift hover:border-brand-100 flex-1">
             <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-mic"></i></div>
             <h4 class="font-bold text-slate-900 mb-2">${t("Podcast, Apps &amp; Social","Podcast, Apps y Redes Sociales")}</h4>
             <p class="text-sm text-slate-600"><strong>Podcast:</strong> ${t('"The AA Grapevine Half-Hour Variety Hour" — new episode every Monday, free on all platforms.','"The AA Grapevine Half-Hour Variety Hour" — episodio nuevo cada lunes, gratis en todas las plataformas.')}</p>
@@ -1443,7 +1456,7 @@ function renderAbout(){
               <a href="${GV_FOLLOW_URL}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition-colors no-underline border border-slate-200"><i class="bi bi-arrow-up-right"></i> ${t("Follow","Seguir")}</a>
             </div>
           </div>
-          <div class="bg-white border-2 border-purple-200 rounded-xl p-6 mt-3 card-lift hover:border-purple-300">
+          <div class="bg-white border-2 border-purple-200 rounded-xl p-6 card-lift hover:border-purple-300 flex-1">
             <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xl mb-3"><i class="bi bi-check2-square"></i></div>
             <h4 class="font-bold text-slate-900 mb-2">${tx(TRADITIONS_CHECKLIST,"title")}</h4>
             <p class="text-sm text-slate-600 mb-3">${tx(TRADITIONS_CHECKLIST,"description")}</p>
